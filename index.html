@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autodetailing Cennik - Piotr Ostrowski GlanzWerk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset i podstawowe style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: #e0e0e0;
+            line-height: 1.7;
+            padding: 40px 20px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 
+                        0 0 30px rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Flagi językowe */
+        #flags {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.05);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .flag {
+            font-size: 2em;
+            margin: 0 15px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            padding: 10px;
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .flag:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .language-content {
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .language-content.active {
+            display: block;
+        }
+
+        /* Nagłówki */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #ffd700;
+            font-size: 2.8rem;
+            text-align: center;
+            padding: 40px 20px 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #ffd700, transparent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .company-name {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #ffd700;
+            padding: 0 20px 20px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .intro-text {
+            padding: 20px 40px;
+            text-align: center;
+            font-size: 1.05rem;
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .address {
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            color: #ffd700;
+            font-weight: 500;
+        }
+
+        /* Pakiety */
+        .packages-container {
+            padding: 40px 30px;
+        }
+
+        .package {
+            background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .package:hover::before {
+            left: 100%;
+        }
+
+        .package:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 
+                        0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .package h3 {
+            font-family: 'Playfair Display', serif;
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .package h3::before {
+            content: '✦';
+            font-size: 1.2rem;
+            color: #ffd700;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 12px rgba(255, 215, 0, 0.6); }
+            to { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4); }
+        }
+
+        .package-price {
+            font-size: 1.3rem;
+            color: #ffd700;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .package ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .package ul li {
+            padding: 10px 0;
+            position: relative;
+            padding-left: 30px;
+            font-size: 1rem;
+            color: #ddd;
+            border-bottom: 1px dashed rgba(255, 215, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .package ul li:hover {
+            padding-left: 35px;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        .package ul li:last-child {
+            border-bottom: none;
+        }
+
+        .package ul li::before {
+            content: '✦';
+            color: #ffd700;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .package ul li:hover::before {
+            transform: scale(1.2);
+        }
+
+        .package-time {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            font-weight: 500;
+            color: #ffd700;
+            font-size: 1.05rem;
+        }
+
+        /* Info dodatkowe */
+        .additional-info {
+            padding: 30px 40px;
+            text-align: center;
+            font-size: 1.05rem;
+            color: #ccc;
+            background: rgba(255, 215, 0, 0.03);
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            line-height: 1.8;
+        }
+
+        /* CTA Sekcja */
+        .cta-section {
+            background: linear-gradient(to bottom, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+            padding: 40px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .cta-phone {
+            font-size: 1.3rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin: 10px 10px 0 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button.phone {
+            background: linear-gradient(to right, #ffd700, #ffed4e);
+            color: #111;
+        }
+
+        .cta-button.mail {
+            background: linear-gradient(to right, #28a745, #20c997);
+            color: #fff;
+        }
+
+        .cta-button.mail:hover {
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.6);
+        }
+
+        .cta-button.insta {
+            background: linear-gradient(to right, #e1306c, #fd1d1d, #fcaf45);
+            color: #fff;
+        }
+
+        .cta-button.insta:hover {
+            box-shadow: 0 8px 25px rgba(225, 48, 108, 0.6);
+        }
+
+        /* Stopka */
+        .footer-note {
+            text-align: center;
+            padding: 30px 20px;
+            font-style: italic;
+            color: #aaa;
+            background: #0a0a0a;
+            border-top: 1px solid #333;
+            font-size: 1rem;
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            body { padding: 20px 10px; }
+            h1 { font-size: 2rem; padding: 30px 15px 10px; }
+            .company-name { font-size: 1.1rem; padding: 0 15px 15px; }
+            .intro-text { padding: 15px 20px; font-size: 1rem; }
+            .packages-container { padding: 30px 20px; }
+            .package { padding: 20px; }
+            .package h3 { font-size: 1.5rem; }
+            .additional-info { padding: 20px 25px; font-size: 1rem; }
+            .cta-section { padding: 30px 20px; }
+            .cta-button { 
+                display: block; 
+                margin: 10px auto;
+                width: 100%;
+                max-width: 280px;
+            }
+            .flag { font-size: 1.5em; margin: 0 10px; padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="flags">
+            <span class="flag" onclick="setLanguage('pl'); return false;" title="Polski">🇵🇱</span>
+            <span class="flag" onclick="setLanguage('de'); return false;" title="Deutsch">🇩🇪</span>
+            <span class="flag" onclick="setLanguage('en'); return false;" title="English">🇬🇧</span>
+        </div>
+
+        <!-- Treść po polsku -->
+        <div id="content-pl" class="language-content active">
+            <h1>Autodetailing Cennik</h1>
+            <p class="company-name">Piotr Ostrowski GlanzWerk</p>
+            <p class="address"><strong>Adres:</strong> 22885 Barsbüttel</p>
+            <p class="intro-text">Oferuję profesjonalne usługi autodetailingu, dostosowane do Twoich potrzeb. Pakiety mogą być indywidualnie modyfikowane według specyfiki pojazdu i wymagań klienta – skontaktuj się zemną, aby omówić szczegóły!</p>
+            
+            <div class="packages-container">
+                <!-- Serwis Zimowy na pierwszym miejscu -->
+                <div class="package">
+                    <h3>Serwis Zimowy</h3>
+                    <div class="package-price">150-250 €</div>
+                    <ul>
+                        <li>Dokładne usunięcie soli, błota, piasku i wszystkich innych zanieczyszczeń zimowych</li>
+                        <li>Pełna dekontaminacja chemiczna i mechaniczna</li>
+                        <li>Zabezpieczenie lakieru, felg, opon oraz szyb (powłoki ochronne, woski)</li>
+                    </ul>
+                    <div class="package-time">⏱ Szacowany czas: 6-8 godzin</div>
+                </div>
+
+                <div class="package">
+                    <h3>Pakiet <strong>BASIC</strong></h3>
+                    <div class="package-price">80-150 €</div>
+                    <ul>
+                        <li>Bezpieczne mycie ręczne</li>
+                        <li>Odkurzanie wnętrza</li>
+                        <li>Podstawowe czyszczenie wnętrza</li>
+                        <li>Mycie szyb</li>
+                    </ul>
+                    <div class="package-time">⏱ Szacowany czas: 4-6 godzin</div>
+                </div>
+
+                <div class="package">
+                    <h3>Pakiet <strong>STANDARD</strong></h3>
+                    <div class="package-price">250-350 €</div>
+                    <ul>
+                        <li>Wszystko z pakietu Basic</li>
+                        <li>Podstawowe czyszczenie foteli</li>
+                        <li>Pranie dywaników</li>
+                        <li>Ręczne polerowanie szyb</li>
+                        <li>Głębokie czyszczenie wnętrza</li>
+                        <li>Powłoki ochronne na lakier, felgi, szyby i plastiki</li>
+                    </ul>
+                    <div class="package-time">⏱ Szacowany czas: 1 dzień</div>
+                </div>
+
+                <div class="package">
+                    <h3>Pakiet <strong>PREMIUM</strong></h3>
+                    <div class="package-price">550-650 €</div>
+                    <ul>
+                        <li>Wszystko z pakietu Standard</li>
+                        <li>Ekstrakcyjne pranie foteli / Głębokie czyszczenie i impregnacja foteli skórzanych / Głębokie czyszczenie alcantary</li>
+                        <li>Wosk na lakier</li>
+                        <li>Mycie pod maską</li>
+                        <li>Polerowanie one-step</li>
+                    </ul>
+                    <div class="package-time">⏱ Szacowany czas: 2 dni</div>
+                </div>
+
+                <div class="package">
+                    <h3>Pakiet <strong>ULTIMATE</strong></h3>
+                    <div class="package-price">800-1200 €</div>
+                    <ul>
+                        <li>Wszystko z pakietu Premium</li>
+                        <li>Wieloetapowa korekta lakieru</li>
+                        <li>Ceramika na lakier, felgi i szyby</li>
+                    </ul>
+                    <div class="package-time">⏱ Szacowany czas: 2-4 dni</div>
+                </div>
+            </div>
+
+            <div class="additional-info">
+                Ceny mogą być dostosowane w zależności od specyfiki zlecenia i rozmiaru pojazdu. Usługi indywidualnie dobierane według potrzeb – zadzwoń po darmową wycenę!
+            </div>
+            
+            <div class="cta-section">
+                <div class="cta-phone">📞 +49 176 41528287</div>
+                <a href="tel:+4917641528287" class="cta-button phone">Zadzwoń teraz!</a>
+                <a href="mailto:glanzwerkk@gmail.com?subject=Zapytanie o autodetailing" class="cta-button mail">Napisz do nas</a>
+                <a href="https://www.instagram.com/glanzwerk_ostrowski/" target="_blank" rel="noopener noreferrer" class="cta-button insta">Obserwuj na Instagramie</a>
+            </div>
+            
+            <p class="footer-note">Profesjonalny autodetailing z dbałością o detale. © Piotr Ostrowski GlanzWerk</p>
+        </div>
+
+        <!-- Treść po niemiecku -->
+        <div id="content-de" class="language-content">
+            <h1>Autodetailing Preisliste</h1>
+            <p class="company-name">Piotr Ostrowski GlanzWerk</p>
+            <p class="address"><strong>Adresse:</strong> 22885 Barsbüttel</p>
+            <p class="intro-text">Ich bieten professionelle Autodetailing-Dienste an, die auf Ihre Bedürfnisse abgestimmt sind. Pakete können individuell an die Spezifikationen des Fahrzeugs und die Anforderungen des Kunden angepasst werden – kontaktieren Sie mich, um Details zu besprechen!</p>
+            
+            <div class="packages-container">
+                <!-- Winterservice na pierwszym miejscu -->
+                <div class="package">
+                    <h3>Winterservice</h3>
+                    <div class="package-price">150-250 €</div>
+                    <ul>
+                        <li>Gründliche Entfernung von Salz, Schlamm, Sand und allen anderen Winterverschmutzungen</li>
+                        <li>Vollständige chemische und mechanische Dekontamination</li>
+                        <li>Schutz von Lack, Felgen, Reifen und Scheiben (Schutzbeschichtungen, Wachse)</li>
+                    </ul>
+                    <div class="package-time">⏱ Geschätzte Zeit: 6-8 Stunden</div>
+                </div>
+
+                <div class="package">
+                    <h3>Paket <strong>BASIC</strong></h3>
+                    <div class="package-price">80-150 €</div>
+                    <ul>
+                        <li>Sicheres Handwaschen</li>
+                        <li>Staubsaugen des Innenraums</li>
+                        <li>Grundlegende Innenreinigung</li>
+                        <li>Fensterreinigung</li>
+                    </ul>
+                    <div class="package-time">⏱ Geschätzte Zeit: 4-6 Stunden</div>
+                </div>
+
+                <div class="package">
+                    <h3>Paket <strong>STANDARD</strong></h3>
+                    <div class="package-price">250-350 €</div>
+                    <ul>
+                        <li>Alles aus dem Basic-Paket</li>
+                        <li>Grundlegende Sitzreinigung</li>
+                        <li>Teppichmatten-Wäsche</li>
+                        <li>Manuelles Polieren der Fenster</li>
+                        <li>Tiefenreinigung des Innenraums</li>
+                        <li>Schutzbeschichtungen auf Lack, Felgen, Fenster und Kunststoffe</li>
+                    </ul>
+                    <div class="package-time">⏱ Geschätzte Zeit: 1 Tag</div>
+                </div>
+
+                <div class="package">
+                    <h3>Paket <strong>PREMIUM</strong></h3>
+                    <div class="package-price">550-650 €</div>
+                    <ul>
+                        <li>Alles aus dem Standard-Paket</li>
+                        <li>Extraktionswäsche der Sitze / Tiefenreinigung und Imprägnierung von Ledersitzen / Tiefenreinigung von Alcantara</li>
+                        <li>Wachs auf Lack</li>
+                        <li>Reinigung unter der Motorhaube</li>
+                        <li>One-Step-Polieren</li>
+                    </ul>
+                    <div class="package-time">⏱ Geschätzte Zeit: 2 Tage</div>
+                </div>
+
+                <div class="package">
+                    <h3>Paket <strong>ULTIMATE</strong></h3>
+                    <div class="package-price">800-1200 €</div>
+                    <ul>
+                        <li>Alles aus dem Premium-Paket</li>
+                        <li>Mehrstufige Lackkorrektur</li>
+                        <li>Keramikbeschichtung auf Lack, Felgen und Fenster</li>
+                    </ul>
+                    <div class="package-time">⏱ Geschätzte Zeit: 2-4 Tage</div>
+                </div>
+            </div>
+
+            <div class="additional-info">
+                Preise können je nach Auftragsart und Fahrzeuggröße angepasst werden. Dienstleistungen individuell nach Bedarf – rufen Sie für eine kostenlose Bewertung an!
+            </div>
+            
+            <div class="cta-section">
+                <div class="cta-phone">📞 +49 176 41528287</div>
+                <a href="tel:+4917641528287" class="cta-button phone">Jetzt anrufen!</a>
+                <a href="mailto:glanzwerkk@gmail.com?subject=Anfrage Autodetailing" class="cta-button mail">Schreiben Sie uns</a>
+                <a href="https://www.instagram.com/glanzwerk_ostrowski/" target="_blank" rel="noopener noreferrer" class="cta-button insta">Auf Instagram folgen</a>
+            </div>
+            
+            <p class="footer-note">Professionelles Autodetailing mit Liebe zum Detail. © Piotr Ostrowski GlanzWerk</p>
+        </div>
+
+        <!-- Treść po angielsku -->
+        <div id="content-en" class="language-content">
+            <h1>Auto Detailing Price List</h1>
+            <p class="company-name">Piotr Ostrowski GlanzWerk</p>
+            <p class="address"><strong>Address:</strong> 22885 Barsbüttel</p>
+            <p class="intro-text">I offer professional auto detailing services tailored to your needs. Packages can be individually customized based on the vehicle's specifics and client requirements – contact me to discuss details!</p>
+            
+            <div class="packages-container">
+                <!-- Winter Service na pierwszym miejscu -->
+                <div class="package">
+                    <h3>Winter Service</h3>
+                    <div class="package-price">150-250 €</div>
+                    <ul>
+                        <li>Thorough removal of salt, mud, sand and all other winter contaminants</li>
+                        <li>Full chemical and mechanical decontamination</li>
+                        <li>Protection of paint, rims, tires and windows (protective coatings, waxes)</li>
+                    </ul>
+                    <div class="package-time">⏱ Estimated time: 6-8 hours</div>
+                </div>
+
+                <div class="package">
+                    <h3>Package <strong>BASIC</strong></h3>
+                    <div class="package-price">80-150 €</div>
+                    <ul>
+                        <li>Safe hand washing</li>
+                        <li>Vacuuming the interior</li>
+                        <li>Basic interior cleaning</li>
+                        <li>Window cleaning</li>
+                    </ul>
+                    <div class="package-time">⏱ Estimated time: 4-6 hours</div>
+                </div>
+
+                <div class="package">
+                    <h3>Package <strong>STANDARD</strong></h3>
+                    <div class="package-price">250-350 €</div>
+                    <ul>
+                        <li>Everything from Basic package</li>
+                        <li>Basic seat cleaning</li>
+                        <li>Mat washing</li>
+                        <li>Manual window polishing</li>
+                        <li>Deep interior cleaning</li>
+                        <li>Protective coatings on paint, rims, windows, and plastics</li>
+                    </ul>
+                    <div class="package-time">⏱ Estimated time: 1 day</div>
+                </div>
+
+                <div class="package">
+                    <h3>Package <strong>PREMIUM</strong></h3>
+                    <div class="package-price">550-650 €</div>
+                    <ul>
+                        <li>Everything from Standard package</li>
+                        <li>Extraction washing of seats / Deep cleaning and impregnation of leather seats / Deep cleaning of alcantara</li>
+                        <li>Wax on paint</li>
+                        <li>Engine bay cleaning</li>
+                        <li>One-step polishing</li>
+                    </ul>
+                    <div class="package-time">⏱ Estimated time: 2 days</div>
+                </div>
+
+                <div class="package">
+                    <h3>Package <strong>ULTIMATE</strong></h3>
+                    <div class="package-price">800-1200 €</div>
+                    <ul>
+                        <li>Everything from Premium package</li>
+                        <li>Multi-stage paint correction</li>
+                        <li>Ceramic coating on paint, rims, and windows</li>
+                    </ul>
+                    <div class="package-time">⏱ Estimated time: 2-4 days</div>
+                </div>
+            </div>
+
+            <div class="additional-info">
+                Prices may be adjusted depending on the specifics of the order and vehicle size. Services individually tailored according to needs – call for a free quote!
+            </div>
+            
+            <div class="cta-section">
+                <div class="cta-phone">📞 +49 176 41528287</div>
+                <a href="tel:+4917641528287" class="cta-button phone">Call now!</a>
+                <a href="mailto:glanzwerkk@gmail.com?subject=Auto Detailing Inquiry" class="cta-button mail">Write to us</a>
+                <a href="https://www.instagram.com/glanzwerk_ostrowski/" target="_blank" rel="noopener noreferrer" class="cta-button insta">Follow on Instagram</a>
+            </div>
+            
+            <p class="footer-note">Professional auto detailing with attention to detail. © Piotr Ostrowski GlanzWerk</p>
+        </div>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            const contents = document.querySelectorAll('.language-content');
+            contents.forEach(content => content.classList.remove('active'));
+            document.getElementById('content-' + lang).classList.add('active');
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>
