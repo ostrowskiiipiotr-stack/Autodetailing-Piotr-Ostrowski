@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piotr Ostrowski — Auto Detailing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+--black: #1c1c1c;
+--off-black: #242424;
+--dark: #2e2e2e;
+--mid: #666666;
+--light: #c8c8c8;
+--off-white: #f0eeea;
+--white: #ffffff;
+--gold: #b8a070;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(--black);
+color: var(--off-white);
+font-family: 'Montserrat', sans-serif;
+font-weight: 300;
+line-height: 1.7;
+overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 28px 60px;
+background: linear-gradient(to bottom, rgba(28,28,28,0.97), transparent);
+}
+
+.nav-logo {
+display: flex;
+align-items: center;
+gap: 14px;
+text-decoration: none;
+}
+
+.logo-icon {
+width: 42px;
+height: 42px;
+}
+
+.nav-brand {
+display: flex;
+flex-direction: column;
+line-height: 1.2;
+}
+
+.nav-brand-name {
+font-family: 'Montserrat', sans-serif;
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.25em;
+color: var(--off-white);
+text-transform: uppercase;
+}
+
+.nav-brand-sub {
+font-size: 9px;
+font-weight: 400;
+letter-spacing: 0.3em;
+color: var(--light);
+text-transform: uppercase;
+}
+
+.nav-links {
+display: flex;
+gap: 40px;
+list-style: none;
+}
+
+.nav-links a {
+color: var(--light);
+text-decoration: none;
+font-size: 10px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+font-weight: 400;
+transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--off-white); }
+
+/* ── HERO ── */
+.hero {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 120px 40px 80px;
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+inset: 0;
+background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(184,160,112,0.06) 0%, transparent 70%);
+pointer-events: none;
+}
+
+.hero-eyebrow {
+font-size: 9px;
+letter-spacing: 0.5em;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 40px;
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+content: '';
+display: block;
+width: 40px;
+height: 1px;
+background: var(--gold);
+opacity: 0.6;
+}
+
+.hero-logo-mark {
+width: 110px;
+height: 110px;
+margin: 0 auto 48px;
+}
+
+.hero-name {
+font-family: 'Montserrat', sans-serif;
+font-size: clamp(28px, 5vw, 52px);
+font-weight: 300;
+letter-spacing: 0.35em;
+text-transform: uppercase;
+color: var(--off-white);
+line-height: 1.1;
+}
+
+.hero-divider {
+display: flex;
+align-items: center;
+gap: 20px;
+margin: 28px auto;
+width: fit-content;
+}
+
+.hero-divider-line {
+width: 60px;
+height: 1px;
+background: var(--mid);
+}
+
+.hero-subtitle {
+font-size: 10px;
+letter-spacing: 0.45em;
+text-transform: uppercase;
+color: var(--light);
+}
+
+.hero-address {
+margin-top: 20px;
+font-size: 11px;
+letter-spacing: 0.2em;
+color: var(--mid);
+text-transform: uppercase;
+}
+
+.hero-cta-group {
+margin-top: 56px;
+display: flex;
+gap: 16px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.btn-primary {
+padding: 16px 44px;
+background: var(--off-white);
+color: var(--black);
+text-decoration: none;
+font-size: 9px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+font-weight: 500;
+font-family: 'Montserrat', sans-serif;
+transition: background 0.3s, color 0.3s;
+display: inline-block;
+}
+
+.btn-primary:hover {
+background: var(--gold);
+color: var(--black);
+}
+
+.btn-outline {
+padding: 15px 44px;
+border: 1px solid var(--mid);
+color: var(--light);
+text-decoration: none;
+font-size: 9px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+font-weight: 400;
+font-family: 'Montserrat', sans-serif;
+transition: border-color 0.3s, color 0.3s;
+display: inline-block;
+}
+
+.btn-outline:hover {
+border-color: var(--off-white);
+color: var(--off-white);
+}
+
+/* ── LANG SWITCHER ── */
+.lang-switcher {
+display: flex;
+justify-content: center;
+gap: 28px;
+padding: 24px;
+border-bottom: 1px solid #333;
+}
+
+.lang-btn {
+background: none;
+border: none;
+color: var(--mid);
+font-family: 'Montserrat', sans-serif;
+font-size: 10px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+cursor: pointer;
+padding: 4px 0;
+border-bottom: 1px solid transparent;
+transition: color 0.3s, border-color 0.3s;
+}
+
+.lang-btn.active, .lang-btn:hover {
+color: var(--off-white);
+border-bottom-color: var(--gold);
+}
+
+/* ── SECTION SHARED ── */
+section {
+padding: 100px 40px;
+max-width: 1100px;
+margin: 0 auto;
+}
+
+.section-eyebrow {
+font-size: 9px;
+letter-spacing: 0.45em;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+gap: 16px;
+}
+
+.section-eyebrow::after {
+content: '';
+display: block;
+flex: 1;
+height: 1px;
+background: #333;
+}
+
+.section-title {
+font-family: 'Cormorant Garamond', serif;
+font-size: clamp(32px, 4vw, 54px);
+font-weight: 300;
+color: var(--off-white);
+letter-spacing: 0.04em;
+line-height: 1.1;
+margin-bottom: 16px;
+}
+
+.section-lead {
+font-size: 12px;
+color: var(--light);
+letter-spacing: 0.05em;
+max-width: 540px;
+margin-bottom: 64px;
+line-height: 1.9;
+}
+
+/* ── PACKAGES ── */
+#pakiety { max-width: 1100px; }
+
+.packages-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 1px;
+background: #1e1e1e;
+}
+
+.package-card {
+background: var(--off-black);
+padding: 48px 36px;
+position: relative;
+transition: background 0.3s;
+}
+
+.package-card:hover {
+background: #151515;
+}
+
+.package-card.featured {
+background: #141410;
+}
+
+.package-tier {
+font-size: 8px;
+letter-spacing: 0.45em;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 12px;
+}
+
+.package-name {
+font-family: 'Montserrat', sans-serif;
+font-size: 20px;
+font-weight: 500;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(--off-white);
+margin-bottom: 24px;
+}
+
+.package-price {
+font-family: 'Cormorant Garamond', serif;
+font-size: 42px;
+font-weight: 300;
+color: var(--off-white);
+line-height: 1;
+margin-bottom: 6px;
+}
+
+.package-time {
+font-size: 9px;
+letter-spacing: 0.2em;
+color: var(--mid);
+text-transform: uppercase;
+margin-bottom: 32px;
+padding-bottom: 32px;
+border-bottom: 1px solid #333;
+}
+
+.package-features {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.package-features li {
+font-size: 13px;
+color: var(--light);
+letter-spacing: 0.03em;
+padding-left: 18px;
+position: relative;
+line-height: 1.7;
+}
+
+.package-features li::before {
+content: '—';
+position: absolute;
+left: 0;
+color: var(--gold);
+font-size: 10px;
+}
+
+/* ── CONTACT ── */
+.contact-section {
+max-width: 1100px;
+border-top: 1px solid #333;
+}
+
+.contact-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: start;
+}
+
+.contact-item {
+display: flex;
+flex-direction: column;
+gap: 6px;
+margin-bottom: 32px;
+}
+
+.contact-label {
+font-size: 8px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(--gold);
+}
+
+.contact-value {
+font-size: 13px;
+color: var(--off-white);
+letter-spacing: 0.05em;
+text-decoration: none;
+transition: color 0.3s;
+}
+
+a.contact-value:hover { color: var(--gold); }
+
+.contact-cta-group {
+display: flex;
+flex-direction: column;
+gap: 12px;
+margin-top: 16px;
+}
+
+.contact-note {
+font-size: 11px;
+color: var(--mid);
+letter-spacing: 0.04em;
+line-height: 1.9;
+}
+
+/* ── FOOTER ── */
+footer {
+border-top: 1px solid #333;
+padding: 40px 60px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+flex-wrap: wrap;
+}
+
+.footer-copy {
+font-size: 10px;
+color: var(--mid);
+letter-spacing: 0.15em;
+}
+
+.footer-social a {
+color: var(--mid);
+text-decoration: none;
+font-size: 9px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+transition: color 0.3s;
+}
+
+.footer-social a:hover { color: var(--off-white); }
+
+/* ── LANG SECTIONS ── */
+.lang-section { display: none; }
+.lang-section.active { display: block; }
+
+/* ── STAR SPARKLE ── */
+@keyframes pulse-glow {
+0%, 100% { opacity: 0.7; }
+50% { opacity: 1; }
+}
+
+.sparkle-animate { animation: pulse-glow 3s ease-in-out infinite; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+nav { padding: 20px 24px; }
+.nav-links { display: none; }
+section { padding: 70px 24px; }
+footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+.contact-grid { grid-template-columns: 1fr; gap: 40px; }
+.packages-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<a href="#" class="nav-logo">
+<svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="46" cy="50" r="36" stroke="#f0eeea" stroke-width="5" fill="none" stroke-linecap="round"
+stroke-dasharray="195 35"
+stroke-dashoffset="-5"
+transform="rotate(-30 46 50)"/>
+<line x1="62" y1="50" x2="84" y2="50" stroke="#f0eeea" stroke-width="5" stroke-linecap="round"/>
+<line x1="62" y1="58" x2="78" y2="58" stroke="#f0eeea" stroke-width="5" stroke-linecap="round"/>
+<!-- sparkle -->
+<path d="M46 32 L48 44 L60 46 L48 48 L46 60 L44 48 L32 46 L44 44 Z" fill="#f0eeea" class="sparkle-animate"/>
+</svg>
+<div class="nav-brand">
+<span class="nav-brand-name">Piotr Ostrowski</span>
+<span class="nav-brand-sub">Auto Detailing</span>
+</div>
+</a>
+<ul class="nav-links">
+<li><a href="#pakiety">Pakiety</a></li>
+<li><a href="#kontakt">Kontakt</a></li>
+<li><a href="https://www.instagram.com/glanzwerk_ostrowski/" target="_blank">Instagram</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+<div class="hero-eyebrow">Barsbüttel, Hamburg</div>
+
+<svg class="hero-logo-mark" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="92" cy="100" r="72" stroke="#f0eeea" stroke-width="8" fill="none" stroke-linecap="round"
+stroke-dasharray="390 70"
+stroke-dashoffset="-10"
+transform="rotate(-30 92 100)"/>
+<line x1="126" y1="100" x2="172" y2="100" stroke="#f0eeea" stroke-width="8" stroke-linecap="round"/>
+<line x1="126" y1="116" x2="158" y2="116" stroke="#f0eeea" stroke-width="8" stroke-linecap="round"/>
+<path d="M92 64 L96 88 L120 92 L96 96 L92 120 L88 96 L64 92 L88 88 Z" fill="#f0eeea" class="sparkle-animate"/>
+</svg>
+
+<h1 class="hero-name">Piotr Ostrowski</h1>
+
+<div class="hero-divider">
+<div class="hero-divider-line"></div>
+<span class="hero-subtitle">Auto Detailing</span>
+<div class="hero-divider-line"></div>
+</div>
+
+<p class="hero-address">Ohlweg 5  ·  22885 Barsbüttel</p>
+
+<div class="hero-cta-group">
+<a href="tel:+4917641528287" class="btn-primary">Zadzwoń teraz</a>
+<a href="#pakiety" class="btn-outline">Zobacz pakiety</a>
+</div>
+</header>
+
+<!-- LANG SWITCHER -->
+<div class="lang-switcher">
+<button class="lang-btn active" onclick="switchLang('de', this)">🇩🇪 Deutsch</button>
+<button class="lang-btn" onclick="switchLang('pl', this)">🇵🇱 Polski</button>
+<button class="lang-btn" onclick="switchLang('en', this)">🇬🇧 English</button>
+</div>
+
+<!-- ════════════ POLSKI ════════════ -->
+<div id="lang-pl" class="lang-section">
+
+<section id="pakiety">
+<div class="section-eyebrow">Cennik</div>
+<h2 class="section-title">Pakiety Detailingowe</h2>
+<p class="section-lead">Profesjonalne usługi dopasowane do Twoich potrzeb. Każdy pakiet można indywidualnie zmodyfikować — skontaktuj się, aby omówić szczegóły.</p>
+
+<div class="packages-grid">
+<div class="package-card">
+<div class="package-tier">Pakiet 01</div>
+<div class="package-name">Basic</div>
+<div class="package-price">80–150€</div>
+<div class="package-time">⏱ 4–6 godzin</div>
+<ul class="package-features">
+<li>Bezpieczne mycie ręczne</li>
+<li>Odkurzanie wnętrza</li>
+<li>Podstawowe czyszczenie wnętrza</li>
+<li>Mycie szyb</li>
+</ul>
+</div>
+
+<div class="package-card">
+<div class="package-tier">Pakiet 02</div>
+<div class="package-name">Standard</div>
+<div class="package-price">250–350€</div>
+<div class="package-time">⏱ 1 dzień</div>
+<ul class="package-features">
+<li>Wszystko z pakietu Basic</li>
+<li>Podstawowe czyszczenie foteli</li>
+<li>Pranie dywaników</li>
+<li>Ręczne polerowanie szyb</li>
+<li>Głębokie czyszczenie wnętrza</li>
+<li>Powłoki ochronne na lakier, felgi, szyby i plastiki</li>
+</ul>
+</div>
+
+<div class="package-card featured">
+<div class="package-tier">Pakiet 03</div>
+<div class="package-name">Premium</div>
+<div class="package-price">550–650€</div>
+<div class="package-time">⏱ 2 dni</div>
+<ul class="package-features">
+<li>Wszystko z pakietu Standard</li>
+<li>Ekstrakcyjne pranie foteli / skóra / alcantara</li>
+<li>Wosk na lakier</li>
+<li>Mycie pod maską</li>
+<li>Polerowanie one-step</li>
+</ul>
+</div>
+
+<div class="package-card">
+<div class="package-tier">Pakiet 04</div>
+<div class="package-name">Ultimate</div>
+<div class="package-price">800–1200€</div>
+<div class="package-time">⏱ 2–4 dni</div>
+<ul class="package-features">
+<li>Wszystko z pakietu Premium</li>
+<li>Wieloetapowa korekta lakieru</li>
+<li>Ceramika na lakier, felgi i szyby</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="kontakt" class="contact-section">
+<div class="section-eyebrow">Kontakt</div>
+<h2 class="section-title">Umów się na wizytę</h2>
+<div class="contact-grid">
+<div>
+<div class="contact-item">
+<span class="contact-label">Telefon</span>
+<a href="tel:+4917641528287" class="contact-value">+49 176 415 28 287</a>
+</div>
+<div class="contact-item">
+<span class="contact-label">E-mail</span>
+<a href="mailto:glanzwerkk@gmail.com" class="contact-value">glanzwerkk@gmail.com</a>
+</div>
+<div class="contact-item">
+<span class="contact-label">Adres</span>
+<span class="contact-value">Ohlweg 5, 22885 Barsbüttel</span>
+</div>
+<div class="contact-cta-group">
+<a href="tel:+4917641528287" class="btn-primary">Zadzwoń teraz</a>
+<a href="mailto:glanzwerkk@gmail.com?subject=Zapytanie o autodetailing" class="btn-outline">Napisz e-mail</a>
+<a href="https://www.instagram.com/glanzwerk_ostrowski/" target="_blank" class="btn-outline">Instagram</a>
+</div>
+</div>
+<div>
+<p class="contact-note">Ceny mogą być dostosowane w zależności od specyfiki zlecenia i rozmiaru pojazdu. Usługi indywidualnie dobierane według Twoich potrzeb.<br><br>Zadzwoń po bezpłatną wycenę — chętnie omówię szczegóły i dobiorę odpowiedni pakiet do Twojego auta.</p>
+</div>
+</div>
+</section>
+</div>
+
+<!-- ════════════ DEUTSCH ════════════ -->
+<div id="lang-de" class="lang-section active">
+
+<section>
+<div class="section-eyebrow">Preisliste</div>
+<h2 class="section-title">Detailing-Pakete</h2>
+<p class="section-lead">Professionelle Dienstleistungen nach Ihren Bedürfnissen. Jedes Paket kann individuell angepasst werden — kontaktieren Sie mich für Details.</p>
+
+<div class="packages-grid">
+<div class="package-card">
+<div class="package-tier">Paket 01</div>
+<div class="package-name">Basic</div>
+<div class="package-price">80–150€</div>
+<div class="package-time">⏱ 4–6 Stunden</div>
+<ul class="package-features">
+<li>Sicheres Handwaschen</li>
+<li>Staubsaugen des Innenraums</li>
+<li>Grundlegende Innenreinigung</li>
+<li>Fensterreinigung</li>
+</ul>
+</div>
+
+<div class="package-card">
+<div class="package-tier">Paket 02</div>
+<div class="package-name">Standard</div>
+<div class="package-price">250–350€</div>
+<div class="package-time">⏱ 1 Tag</div>
+<ul class="package-features">
+<li>Alles aus dem Basic-Paket</li>
+<li>Grundlegende Sitzreinigung</li>
+<li>Teppichmattenwäsche</li>
+<li>Manuelles Fensterpolieren</li>
+<li>Tiefenreinigung Innenraum</li>
+<li>Schutzbeschichtungen auf Lack, Felgen, Glas und Kunststoffe</li>
+</ul>
+</div>
+
+<div class="package-card featured">
+<div class="package-tier">Paket 03</div>
+<div class="package-name">Premium</div>
+<div class="package-price">550–650€</div>
+<div class="package-time">⏱ 2 Tage</div>
+<ul class="package-features">
+<li>Alles aus dem Standard-Paket</li>
+<li>Extraktionswäsche / Leder / Alcantara</li>
+<li>Wachs auf Lack</li>
+<li>Motorwäsche</li>
+<li>One-Step-Polieren</li>
+</ul>
+</div>
+
+<div class="package-card">
+<div class="package-tier">Paket 04</div>
+<div class="package-name">Ultimate</div>
+<div class="package-price">800–1200€</div>
+<div class="package-time">⏱ 2–4 Tage</div>
+<ul class="package-features">
+<li>Alles aus dem Premium-Paket</li>
+<li>Mehrstufige Lackkorrektur</li>
+<li>Keramikbeschichtung auf Lack, Felgen & Glas</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="contact-section">
+<div class="section-eyebrow">Kontakt</div>
+<h2 class="section-title">Termin vereinbaren</h2>
+<div class="contact-grid">
+<div>
+<div class="contact-item">
+<span class="contact-label">Telefon</span>
+<a href="tel:+4917641528287" class="contact-value">+49 176 415 28 287</a>
+</div>
+<div class="contact-item">
+<span class="contact-label">E-Mail</span>
+<a href="mailto:glanzwerkk@gmail.com" class="contact-value">glanzwerkk@gmail.com</a>
+</div>
+<div class="contact-item">
+<span class="contact-label">Adresse</span>
+<span class="contact-value">Ohlweg 5, 22885 Barsbüttel</span>
+</div>
+<div class="contact-cta-group">
+<a href="tel:+4917641528287" class="btn-primary">Jetzt anrufen</a>
+<a href="mailto:glanzwerkk@gmail.com?subject=Anfrage Autodetailing" class="btn-outline">E-Mail schreiben</a>
+<a href="https://www.instagram.com/glanzwerk_ostrowski/" target="_blank" class="btn-outline">Instagram</a>
+</div>
+</div>
+<div>
+<p class="contact-note">Preise können je nach Fahrzeuggröße und Auftragsart variieren. Alle Leistungen werden individuell auf Ihre Bedürfnisse abgestimmt.<br><br>Rufen Sie für eine kostenlose Bewertung an — ich berate Sie gerne persönlich.</p>
+</div>
+</div>
+</section>
+</div>
+
+<!-- ════════════ ENGLISH ════════════ -->
+<div id="lang-en" class="lang-section">
+
+<section>
+<div class="section-eyebrow">Price List</div>
+<h2 class="section-title">Detailing Packages</h2>
+<p class="section-lead">Professional services tailored to your needs. Every package can be individually customised — contact me to discuss the details.</p>
+
+<div class="packages-grid">
+<div class="package-card">
+<div class="package-tier">Package 01</div>
+<div class="package-name">Basic</div>
+<div class="package-price">80–150€</div>
+<div class="package-time">⏱ 4–6 hours</div>
+<ul class="package-features">
+<li>Safe hand washing</li>
+<li>Interior vacuuming</li>
+<li>Basic interior cleaning</li>
+<li>Window cleaning</li>
+</ul>
+</div>
+
+<div class="package-card">
+<div class="package-tier">Package 02</div>
+<div class="package-name">Standard</div>
+<div class="package-price">250–350€</div>
+<div class="package-time">⏱ 1 day</div>
+<ul class="package-features">
+<li>Everything from Basic</li>
+<li>Basic seat cleaning</li>
+<li>Mat washing</li>
+<li>Manual window polishing</li>
+<li>Deep interior cleaning</li>
+<li>Protective coatings on paint, rims, glass & plastics</li>
+</ul>
+</div>
+
+<div class="package-card featured">
+<div class="package-tier">Package 03</div>
+<div class="package-name">Premium</div>
+<div class="package-price">550–650€</div>
+<div class="package-time">⏱ 2 days</div>
+<ul class="package-features">
+<li>Everything from Standard</li>
+<li>Extraction wash / leather / alcantara</li>
+<li>Paint wax</li>
+<li>Engine bay cleaning</li>
+<li>One-step polishing</li>
+</ul>
+</div>
+
+<div class="package-card">
+<div class="package-tier">Package 04</div>
+<div class="package-name">Ultimate</div>
+<div class="package-price">800–1200€</div>
+<div class="package-time">⏱ 2–4 days</div>
+<ul class="package-features">
+<li>Everything from Premium</li>
+<li>Multi-stage paint correction</li>
+<li>Ceramic coating on paint, rims & glass</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="contact-section">
+<div class="section-eyebrow">Contact</div>
+<h2 class="section-title">Book an appointment</h2>
+<div class="contact-grid">
+<div>
+<div class="contact-item">
+<span class="contact-label">Phone</span>
+<a href="tel:+4917641528287" class="contact-value">+49 176 415 28 287</a>
+</div>
+<div class="contact-item">
+<span class="contact-label">Email</span>
+<a href="mailto:glanzwerkk@gmail.com" class="contact-value">glanzwerkk@gmail.com</a>
+</div>
+<div class="contact-item">
+<span class="contact-label">Address</span>
+<span class="contact-value">Ohlweg 5, 22885 Barsbüttel</span>
+</div>
+<div class="contact-cta-group">
+<a href="tel:+4917641528287" class="btn-primary">Call now</a>
+<a href="mailto:glanzwerkk@gmail.com?subject=Auto Detailing Inquiry" class="btn-outline">Send email</a>
+<a href="https://www.instagram.com/glanzwerk_ostrowski/" target="_blank" class="btn-outline">Instagram</a>
+</div>
+</div>
+<div>
+<p class="contact-note">Prices may vary depending on vehicle size and job specifics. All services individually tailored to your needs.<br><br>Call for a free quote — I'll be happy to advise you personally.</p>
+</div>
+</div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<span class="footer-copy">© Piotr Ostrowski GlanzWerk — Auto Detailing</span>
+<div class="footer-social">
+<a href="https://www.instagram.com/glanzwerk_ostrowski/" target="_blank">@glanzwerk_ostrowski</a>
+</div>
+</footer>
+
+<script>
+function switchLang(lang, btn) {
+document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+document.getElementById('lang-' + lang).classList.add('active');
+btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
