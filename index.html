@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piotr Ostrowski — Auto Detailing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+--bg: #e8e4de;
+--bg2: #dedad3;
+--bg3: #d2cdc5;
+--black: #1a1a1a;
+--dark: #2e2e2e;
+--mid: #6b6560;
+--light: #3d3a36;
+--border: #c4bfb7;
+--gold: #8c6e3a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(--bg);
+color: var(--black);
+font-family: 'Montserrat', sans-serif;
+font-weight: 300;
+font-size: 15px;
+line-height: 1.7;
+overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 28px 60px;
+background: linear-gradient(to bottom, rgba(232,228,222,0.97) 70%, transparent);
+}
+
+.nav-logo {
+display: flex;
+align-items: center;
+gap: 14px;
+text-decoration: none;
+}
+
+.logo-icon { width: 42px; height: 42px; }
+
+.nav-brand {
+display: flex;
+flex-direction: column;
+line-height: 1.2;
+}
+
+.nav-brand-name {
+font-size: 13px;
+font-weight: 500;
+letter-spacing: 0.25em;
+color: var(--black);
+text-transform: uppercase;
+}
+
+.nav-brand-sub {
+font-size: 11px;
+font-weight: 400;
+letter-spacing: 0.3em;
+color: var(--mid);
+text-transform: uppercase;
+}
+
+.nav-links {
+display: flex;
+gap: 40px;
+list-style: none;
+}
+
+.nav-links a {
+color: var(--mid);
+text-decoration: none;
+font-size: 12px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+font-weight: 400;
+transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--black); }
+
+/* ── HERO ── */
+.hero {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 120px 40px 80px;
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+inset: 0;
+background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(140,110,58,0.07) 0%, transparent 70%);
+pointer-events: none;
+}
+
+.hero-eyebrow {
+font-size: 11px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 40px;
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+content: '';
+display: block;
+width: 40px;
+height: 1px;
+background: var(--gold);
+opacity: 0.5;
+}
+
+.hero-logo-mark {
+width: 110px;
+height: 110px;
+margin: 0 auto 48px;
+}
+
+.hero-name {
+font-family: 'Montserrat', sans-serif;
+font-size: clamp(28px, 5vw, 52px);
+font-weight: 300;
+letter-spacing: 0.35em;
+text-transform: uppercase;
+color: var(--black);
+line-height: 1.1;
+}
+
+.hero-divider {
+display: flex;
+align-items: center;
+gap: 20px;
+margin: 28px auto;
+width: fit-content;
+}
+
+.hero-divider-line {
+width: 60px;
+height: 1px;
+background: var(--border);
+}
+
+.hero-subtitle {
+font-size: 13px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(--mid);
+}
+
+.hero-address {
+margin-top: 20px;
+font-size: 13px;
+letter-spacing: 0.15em;
+color: var(--mid);
+text-transform: uppercase;
+}
+
+.hero-cta-group {
+margin-top: 56px;
+display: flex;
+gap: 16px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.btn-primary {
+padding: 16px 44px;
+background: var(--black);
+color: var(--bg);
+text-decoration: none;
+font-size: 11px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+font-weight: 500;
+font-family: 'Montserrat', sans-serif;
+transition: background 0.3s, color 0.3s;
+display: inline-block;
+}
+
+.btn-primary:hover { background: var(--gold); color: #fff; }
+
+.btn-outline {
+padding: 15px 44px;
+border: 1px solid var(--border);
+color: var(--dark);
+text-decoration: none;
+font-size: 11px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+font-weight: 400;
+font-family: 'Montserrat', sans-serif;
+transition: border-color 0.3s, color 0.3s;
+display: inline-block;
+}
+
+.btn-outline:hover { border-color: var(--black); color: var(--black); }
+
+/* ── LANG SWITCHER ── */
+.lang-switcher {
+display: flex;
+justify-content: center;
+gap: 28px;
+padding: 20px 24px;
+border-bottom: 1px solid var(--border);
+background: var(--bg2);
+}
+
+.lang-btn {
+background: none;
+border: none;
+color: var(--mid);
+font-family: 'Montserrat', sans-serif;
+font-size: 12px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+cursor: pointer;
+padding: 4px 0;
+border-bottom: 1px solid transparent;
+transition: color 0.3s, border-color 0.3s;
+}
+
+.lang-btn.active, .lang-btn:hover {
+color: var(--black);
+border-bottom-color: var(--gold);
+}
+
+/* ── SECTION SHARED ── */
+section {
+padding: 100px 40px;
+max-width: 1100px;
+margin: 0 auto;
+}
+
+.section-eyebrow {
+font-size: 11px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+gap: 16px;
+}
+
+.section-eyebrow::after {
+content: '';
+display: block;
+flex: 1;
+height: 1px;
+background: var(--border);
+}
+
+.section-title {
+font-family: 'Cormorant Garamond', serif;
+font-size: clamp(32px, 4vw, 54px);
+font-weight: 300;
+color: var(--black);
+letter-spacing: 0.04em;
+line-height: 1.1;
+margin-bottom: 16px;
+}
+
+.section-lead {
+font-size: 14px;
+color: var(--light);
+letter-spacing: 0.03em;
+max-width: 560px;
+margin-bottom: 64px;
+line-height: 1.9;
+}
+
+/* ── PACKAGES ── */
+#pakiety { max-width: 1100px; }
+
+.packages-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 1px;
+background: var(--border);
+}
+
+.package-card {
+background: var(--bg);
+padding: 48px 36px;
+position: relative;
+transition: background 0.3s;
+}
+
+.package-card:hover { background: var(--bg2); }
+.package-card.featured { background: var(--bg2); }
+
+.package-tier {
+font-size: 10px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 12px;
+}
+
+.package-name {
+font-size: 20px;
+font-weight: 500;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(--black);
+margin-bottom: 24px;
+}
+
+.package-price {
+font-family: 'Cormorant Garamond', serif;
+font-size: 44px;
+font-weight: 300;
+color: var(--black);
+line-height: 1;
+margin-bottom: 6px;
+}
+
+.package-time {
+font-size: 11px;
+letter-spacing: 0.15em;
+color: var(--mid);
+text-transform: uppercase;
+margin-bottom: 32px;
+padding-bottom: 32px;
+border-bottom: 1px solid var(--border);
+}
+
+.package-features {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.package-features li {
+font-size: 14px;
+color: var(--light);
+letter-spacing: 0.02em;
+padding-left: 20px;
+position: relative;
+line-height: 1.7;
+}
+
+.package-features li::before {
+content: '—';
+position: absolute;
+left: 0;
+color: var(--gold);
+font-size: 11px;
+}
+
+.package-desc {
+font-size: 13px;
+color: var(--mid);
+line-height: 1.7;
+margin-bottom: 24px;
+letter-spacing: 0.02em;
+}
+
+/* ── CONTACT ── */
+.contact-section {
+max-width: 1100px;
+border-top: 1px solid var(--border);
+}
+
+.contact-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 80px;
+align-items: start;
+}
+
+.contact-item {
+display: flex;
+flex-direction: column;
+gap: 6px;
+margin-bottom: 32px;
+}
+
+.contact-label {
+font-size: 10px;
+letter-spacing: 0.35em;
+text-transform: uppercase;
+color: var(--gold);
+}
+
+.contact-value {
+font-size: 15px;
+color: var(--black);
+letter-spacing: 0.04em;
+text-decoration: none;
+transition: color 0.3s;
+}
+
+a.contact-value:hover { color: var(--gold); }
+
+.contact-cta-group {
+display: flex;
+flex-direction: column;
+gap: 12px;
+margin-top: 16px;
+}
+
+.contact-note {
+font-size: 14px;
+color: var(--mid);
+letter-spacing: 0.02em;
+line-height: 1.9;
+}
+
+/* ── TABS ── */
+.service-tabs {
+display: flex;
+gap: 0;
+border-bottom: 1px solid var(--border);
+margin-bottom: 60px;
+}
+
+.tab-btn {
+padding: 16px 44px;
+font-size: 12px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+font-family: 'Montserrat', sans-serif;
+font-weight: 400;
+border: none;
+background: none;
+cursor: pointer;
+color: var(--mid);
+border-bottom: 2px solid transparent;
+margin-bottom: -1px;
+transition: color 0.3s, border-color 0.3s;
+}
+
+.tab-btn.active {
+color: var(--black);
+border-bottom-color: var(--gold);
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ── LEARN MORE BUTTON ── */
+.btn-learn-more {
+margin-top: 24px;
+background: none;
+border: 1px solid var(--border);
+color: var(--gold);
+font-family: 'Montserrat', sans-serif;
+font-size: 11px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+padding: 10px 20px;
+cursor: pointer;
+transition: border-color 0.3s, color 0.3s;
+display: inline-block;
+}
+
+.btn-learn-more:hover {
+border-color: var(--gold);
+color: var(--black);
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(26,26,26,0.7);
+z-index: 200;
+align-items: center;
+justify-content: center;
+padding: 24px;
+}
+
+.modal-overlay.open {
+display: flex;
+}
+
+.modal-box {
+background: var(--bg);
+max-width: 640px;
+width: 100%;
+max-height: 85vh;
+overflow-y: auto;
+padding: 48px;
+position: relative;
+}
+
+.modal-close {
+position: absolute;
+top: 20px;
+right: 24px;
+background: none;
+border: none;
+font-size: 22px;
+cursor: pointer;
+color: var(--mid);
+line-height: 1;
+transition: color 0.2s;
+}
+
+.modal-close:hover { color: var(--black); }
+
+.modal-eyebrow {
+font-size: 9px;
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: var(--gold);
+margin-bottom: 8px;
+}
+
+.modal-title {
+font-family: 'Cormorant Garamond', serif;
+font-size: 32px;
+font-weight: 300;
+color: var(--black);
+margin-bottom: 8px;
+}
+
+.modal-price {
+font-size: 13px;
+color: var(--mid);
+letter-spacing: 0.1em;
+margin-bottom: 32px;
+padding-bottom: 28px;
+border-bottom: 1px solid var(--border);
+}
+
+.modal-steps {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 0;
+}
+
+.modal-steps li {
+display: flex;
+gap: 16px;
+padding: 14px 0;
+border-bottom: 1px solid var(--border);
+}
+
+.modal-step-num {
+font-size: 11px;
+color: var(--gold);
+letter-spacing: 0.1em;
+font-weight: 500;
+width: 24px;
+flex-shrink: 0;
+padding-top: 2px;
+}
+
+.modal-step-content {
+flex: 1;
+}
+
+.modal-step-title {
+font-size: 13px;
+font-weight: 500;
+color: var(--black);
+margin-bottom: 3px;
+letter-spacing: 0.03em;
+}
+
+.modal-step-desc {
+font-size: 12px;
+color: var(--mid);
+line-height: 1.7;
+letter-spacing: 0.02em;
+}
+
+.modal-result {
+margin-top: 28px;
+padding: 20px 24px;
+background: var(--bg2);
+border-left: 3px solid var(--gold);
+font-size: 13px;
+color: var(--light);
+line-height: 1.7;
+}
+
+/* ── FOOTER ── */
+footer {
+border-top: 1px solid var(--border);
+background: var(--bg2);
+padding: 36px 60px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+flex-wrap: wrap;
+}
+
+.footer-copy {
+font-size: 12px;
+color: var(--mid);
+letter-spacing: 0.12em;
+}
+
+.footer-social a {
+color: var(--mid);
+text-decoration: none;
+font-size: 12px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+transition: color 0.3s;
+}
+
+.footer-social a:hover { color: var(--black); }
+
+/* ── LANG SECTIONS ── */
+.lang-section { display: none; }
+.lang-section.active { display: block; }
+
+/* ── STAR SPARKLE ── */
+@keyframes pulse-glow {
+0%, 100% { opacity: 0.7; }
+50% { opacity: 1; }
+}
+
+.sparkle-animate { animation: pulse-glow 3s ease-in-out infinite; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+nav { padding: 20px 24px; }
+.nav-links { display: none; }
+section { padding: 70px 24px; }
+footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+.contact-grid { grid-template-columns: 1fr; gap: 40px; }
+.packages-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+<a href="#" class="nav-logo">
+<svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="46" cy="50" r="36" stroke="#1a1a1a" stroke-width="5" fill="none" stroke-linecap="round"
+stroke-dasharray="195 35"
+stroke-dashoffset="-5"
+transform="rotate(-30 46 50)"/>
+<line x1="62" y1="50" x2="84" y2="50" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+<line x1="62" y1="58" x2="78" y2="58" stroke="#1a1a1a" stroke-width="5" stroke-linecap="round"/>
+<!-- sparkle -->
+<path d="M46 32 L48 44 L60 46 L48 48 L46 60 L44 48 L32 46 L44 44 Z" fill="#1a1a1a" class="sparkle-animate"/>
+</svg>
+<div class="nav-brand">
+<span class="nav-brand-name">Piotr Ostrowski</span>
+<span class="nav-brand-sub">Auto Detailing</span>
+</div>
+</a>
+<ul class="nav-links">
+<li><a href="#pakiety" data-translate="nav-packages">Pakete</a></li>
+<li><a href="#kontakt" data-translate="nav-contact">Kontakt</a></li>
+<li><a href="https://www.instagram.com/ostrowski_autodetailing?igsh=eTA1YXd4M3JkcTA5" target="_blank">Instagram</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+<div class="hero-eyebrow">Barsbüttel, Hamburg</div>
+
+<svg class="hero-logo-mark" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="92" cy="100" r="72" stroke="#1a1a1a" stroke-width="8" fill="none" stroke-linecap="round"
+stroke-dasharray="390 70"
+stroke-dashoffset="-10"
+transform="rotate(-30 92 100)"/>
+<line x1="126" y1="100" x2="172" y2="100" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round"/>
+<line x1="126" y1="116" x2="158" y2="116" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round"/>
+<path d="M92 64 L96 88 L120 92 L96 96 L92 120 L88 96 L64 92 L88 88 Z" fill="#1a1a1a" class="sparkle-animate"/>
+</svg>
+
+<h1 class="hero-name">Piotr Ostrowski</h1>
+
+<div class="hero-divider">
+<div class="hero-divider-line"></div>
+<span class="hero-subtitle">Auto Detailing</span>
+<div class="hero-divider-line"></div>
+</div>
+
+<p class="hero-address">Ohlweg 5  ·  22885 Barsbüttel</p>
+
+<div class="hero-cta-group">
+<a href="tel:+4917641528287" class="btn-primary" data-translate="btn-call">Jetzt anrufen</a>
+<a href="#pakiety-de" class="btn-outline" data-translate="btn-packages">Leistungen ansehen</a>
+</div>
+</header>
+
+<!-- LANG SWITCHER -->
+<div class="lang-switcher">
+<button class="lang-btn active" onclick="switchLang('de', this)">🇩🇪 Deutsch</button>
+<button class="lang-btn" onclick="switchLang('pl', this)">🇵🇱 Polski</button>
+<button class="lang-btn" onclick="switchLang('en', this)">🇬🇧 English</button>
+</div>
+
+<!-- ════════════ POLSKI ════════════ -->
+<div id="lang-pl" class="lang-section">
+<section id="pakiety">
+<div class="section-eyebrow">Usługi</div>
+<h2 class="section-title">Co oferuję</h2>
+<div class="service-tabs">
+<button class="tab-btn active" onclick="switchTab('pl','detailing',this)">Detailing</button>
+<button class="tab-btn" onclick="switchTab('pl','polishing',this)">Polerowanie</button>
+</div>
+<div id="pl-detailing" class="tab-content active">
+<p class="section-lead">Profesjonalne usługi dopasowane do Twoich potrzeb. Tylko po wcześniejszym umówieniu — ograniczona liczba miejsc w weekendy.</p>
+<div class="packages-grid">
+<div class="package-card">
+<div class="package-tier">Pakiet 01</div>
+<div class="package-name">Czyszczenie wnętrza</div>
+<div class="package-price">199–299€</div>
+<div class="package-time">⏱ Interior Detail</div>
+<p class="package-desc">Gruntowne czyszczenie wnętrza włącznie z tapicerką, dywanikami i delikatnymi materiałami.</p>
+<ul class="package-features">
+<li>Odkurzanie i czyszczenie szczegółowe</li>
+<li>Pranie tapicerki (ekstrakcja)</li>
+<li>Czyszczenie podsufitki</li>
+<li>Pielęgnacja skóry i alcantary</li>
+<li>Pielęgnacja plastiku wewnętrznego</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('interior')">Dowiedz się więcej</button>
+</div>
+<div class="package-card">
+<div class="package-tier">Pakiet 02</div>
+<div class="package-name">Pielęgnacja zewnętrzna</div>
+<div class="package-price">149–199€</div>
+<div class="package-time">⏱ Außenpflege + Lackschutz</div>
+<p class="package-desc">Intensywne czyszczenie lakieru z zabezpieczeniem ceramicznym ADBL Ceramic Sealant.</p>
+<ul class="package-features">
+<li>Mycie ręczne i felgi</li>
+<li>Dekontaminacja</li>
+<li>Przygotowanie lakieru</li>
+<li>Ochrona ceramiczna (3–6 miesięcy)</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('exterior')">Dowiedz się więcej</button>
+</div>
+<div class="package-card featured">
+<div class="package-tier">Pakiet 03</div>
+<div class="package-name">Pełny detailing</div>
+<div class="package-price">299–399€</div>
+<div class="package-time">⏱ Full Detail (Innen + Außen)</div>
+<p class="package-desc">Wnętrze + zewnętrze w jednym. 50€ taniej niż oba pakiety osobno.</p>
+<ul class="package-features">
+<li>Pełne czyszczenie wnętrza</li>
+<li>Przygotowanie zewnętrzne</li>
+<li>Pielęgnacja plastiku</li>
+<li>Ochrona ceramiczna (3–6 miesięcy)</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('full')">Dowiedz się więcej</button>
+</div>
+<div class="package-card">
+<div class="package-tier">Pakiet 04</div>
+<div class="package-name">Powłoka ceramiczna</div>
+<div class="package-price">699–1499€</div>
+<div class="package-time">⏱ Keramikversiegelung</div>
+<p class="package-desc">Długotrwała ochrona lakieru, szyb i plastiku. Pojazd pozostaje czysty dłużej i łatwiejszy w pielęgnacji.</p>
+<ul class="package-features">
+<li>Przygotowanie lakieru</li>
+<li>Powłoka ceramiczna</li>
+<li>Opcjonalnie: szyby i plastik</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('ceramic')">Dowiedz się więcej</button>
+</div>
+</div>
+</div>
+<div id="pl-polishing" class="tab-content">
+<p class="section-lead">Korekta lakieru przywraca połysk i głębię koloru. <strong>Mycie pojazdu jest wliczone w każdy pakiet polerowania.</strong> Wybieram metodę w zależności od stanu lakieru.</p>
+<div class="packages-grid">
+<div class="package-card">
+<div class="package-tier">Polerowanie 01</div>
+<div class="package-name">One Step</div>
+<div class="package-price">299–399€</div>
+<div class="package-time">⏱ 1 etap · mycie w cenie</div>
+<p class="package-desc">Lekka korekta w jednym przejściu — idealna dla aut w dobrym stanie z drobnymi rysami i hologramami.</p>
+<ul class="package-features">
+<li>Mycie ręczne w cenie</li>
+<li>Usunięcie lekkich rys i wirów (swirls)</li>
+<li>Poprawa połysku i głębi koloru</li>
+<li>Efekt: do 50–70% korekcji defektów</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('onestep')">Dowiedz się więcej</button>
+</div>
+<div class="package-card featured">
+<div class="package-tier">Polerowanie 02</div>
+<div class="package-name">2 etapy</div>
+<div class="package-price">449–599€</div>
+<div class="package-time">⏱ 2 etapy · mycie w cenie</div>
+<p class="package-desc">Dwuetapowa korekta — pasta tnąca + wykańczająca. Dla aut ze średnimi defektami lakieru.</p>
+<ul class="package-features">
+<li>Mycie ręczne w cenie</li>
+<li>Etap 1: pasta tnąca (heavy cut)</li>
+<li>Etap 2: pasta wykańczająca (finishing)</li>
+<li>Efekt: do 85% korekcji defektów</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('twostage')">Dowiedz się więcej</button>
+</div>
+<div class="package-card">
+<div class="package-tier">Polerowanie 03</div>
+<div class="package-name">Wieloetapowe</div>
+<div class="package-price">699–1099€</div>
+<div class="package-time">⏱ 3+ etapy · mycie w cenie</div>
+<p class="package-desc">Pełna korekta lakieru. Dla aut silnie zniszczonych lub przed powłoką ceramiczną.</p>
+<ul class="package-features">
+<li>Mycie ręczne w cenie</li>
+<li>Wieloetapowy proces z różnymi pastami</li>
+<li>Pomiar grubości lakieru (paint gauge)</li>
+<li>Efekt: do 95% korekcji defektów</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('multistage')">Dowiedz się więcej</button>
+</div>
+</div>
+</div>
+</section>
+<section id="kontakt" class="contact-section">
+<div class="section-eyebrow">Kontakt</div>
+<h2 class="section-title">Umów się na wizytę</h2>
+<div class="contact-grid">
+<div>
+<div class="contact-item"><span class="contact-label">Telefon</span><a href="tel:+4917641528287" class="contact-value">+49 176 415 28 287</a></div>
+<div class="contact-item"><span class="contact-label">E-mail</span><a href="mailto:glanzwerkk@gmail.com" class="contact-value">glanzwerkk@gmail.com</a></div>
+<div class="contact-item"><span class="contact-label">Adres</span><span class="contact-value">Ohlweg 5, 22885 Barsbüttel</span></div>
+<div class="contact-cta-group">
+<a href="tel:+4917641528287" class="btn-primary">Zadzwoń teraz</a>
+<a href="mailto:glanzwerkk@gmail.com?subject=Zapytanie o autodetailing" class="btn-outline">Napisz e-mail</a>
+<a href="https://www.instagram.com/ostrowski_autodetailing?igsh=eTA1YXd4M3JkcTA5" target="_blank" class="btn-outline">Instagram</a>
+</div>
+</div>
+<div><p class="contact-note">Ceny mogą się różnić w zależności od rozmiaru pojazdu i stanu lakieru.<br><br>Zadzwoń po bezpłatną wycenę — chętnie omówię szczegóły.</p></div>
+</div>
+</section>
+</div>
+
+<!-- ════════════ DEUTSCH ════════════ -->
+<div id="lang-de" class="lang-section active">
+<section id="pakiety-de">
+<div class="section-eyebrow">Leistungen</div>
+<h2 class="section-title">Was ich anbiete</h2>
+<div class="service-tabs">
+<button class="tab-btn active" onclick="switchTab('de','detailing',this)">Detailing</button>
+<button class="tab-btn" onclick="switchTab('de','polishing',this)">Politur</button>
+</div>
+<div id="de-detailing" class="tab-content active">
+<p class="section-lead">Professionelle Fahrzeugaufbereitung mit Fokus auf Qualität, Schutz und Werterhalt. Nur nach Termin — begrenzte Plätze am Wochenende.</p>
+<div class="packages-grid">
+<div class="package-card">
+<div class="package-tier">Paket 01</div>
+<div class="package-name">Innenreinigung</div>
+<div class="package-price">199–299€</div>
+<div class="package-time">⏱ Interior Detail</div>
+<p class="package-desc">Gründliche Tiefenreinigung des Innenraums inklusive Polster, Teppiche und empfindliche Materialien.</p>
+<ul class="package-features">
+<li>Staubsaugen & Detailreinigung</li>
+<li>Polsterreinigung (Extraktion)</li>
+<li>Dachhimmel Reinigung</li>
+<li>Leder- & Alcantara Pflege</li>
+<li>Kunststoffpflege innen</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('interior')">Mehr erfahren</button>
+</div>
+<div class="package-card">
+<div class="package-tier">Paket 02</div>
+<div class="package-name">Außenpflege + Lackschutz</div>
+<div class="package-price">149–199€</div>
+<div class="package-time">⏱ Außenpflege</div>
+<p class="package-desc">Intensive Lackreinigung mit Keramikversiegelung (ADBL Ceramic Sealant) für Glanz und Hydrophobie.</p>
+<ul class="package-features">
+<li>Handwäsche & Felgen</li>
+<li>Dekontamination</li>
+<li>Lackvorbereitung</li>
+<li>Keramikschutz (3–6 Monate)</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('exterior')">Mehr erfahren</button>
+</div>
+<div class="package-card featured">
+<div class="package-tier">Paket 03</div>
+<div class="package-name">Komplettaufbereitung</div>
+<div class="package-price">299–399€</div>
+<div class="package-time">⏱ Full Detail (Innen + Außen)</div>
+<p class="package-desc">Innen und außen in einem. 50€ günstiger als beide Pakete einzeln.</p>
+<ul class="package-features">
+<li>Innenreinigung komplett</li>
+<li>Außenaufbereitung</li>
+<li>Kunststoffpflege</li>
+<li>Keramikschutz Lack (3–6 Monate)</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('full')">Mehr erfahren</button>
+</div>
+<div class="package-card">
+<div class="package-tier">Paket 04</div>
+<div class="package-name">Keramikversiegelung</div>
+<div class="package-price">699–1499€</div>
+<div class="package-time">⏱ Keramikversiegelung</div>
+<p class="package-desc">Langfristiger Schutz für Lack, Glas und Kunststoff. Ihr Fahrzeug bleibt länger sauber und leichter zu pflegen.</p>
+<ul class="package-features">
+<li>Lackvorbereitung</li>
+<li>Keramikbeschichtung</li>
+<li>Optional: Scheiben & Kunststoff</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('ceramic')">Mehr erfahren</button>
+</div>
+</div>
+</div>
+<div id="de-polishing" class="tab-content">
+<p class="section-lead">Lackkorrektur stellt Glanz und Farbtiefe wieder her. <strong>Fahrzeugwäsche ist in jedem Politurpaket enthalten.</strong> Die Methode wähle ich je nach Lackzustand.</p>
+<div class="packages-grid">
+<div class="package-card">
+<div class="package-tier">Politur 01</div>
+<div class="package-name">One Step</div>
+<div class="package-price">299–399€</div>
+<div class="package-time">⏱ 1 Schritt · Wäsche inkl.</div>
+<p class="package-desc">Leichte Korrektur in einem Durchgang — ideal für Fahrzeuge in gutem Zustand mit leichten Kratzern.</p>
+<ul class="package-features">
+<li>Handwäsche inklusive</li>
+<li>Entfernung leichter Kratzer und Swirls</li>
+<li>Verbesserung von Glanz und Farbtiefe</li>
+<li>Ergebnis: bis zu 50–70% Defektkorrektur</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('onestep')">Mehr erfahren</button>
+</div>
+<div class="package-card featured">
+<div class="package-tier">Politur 02</div>
+<div class="package-name">2 Stufen</div>
+<div class="package-price">449–599€</div>
+<div class="package-time">⏱ 2 Stufen · Wäsche inkl.</div>
+<p class="package-desc">Zweistufige Korrektur — Heavy Cut, dann Finishing. Für Fahrzeuge mit mittleren Lackschäden.</p>
+<ul class="package-features">
+<li>Handwäsche inklusive</li>
+<li>Stufe 1: Schneidpaste (Heavy Cut)</li>
+<li>Stufe 2: Finishpaste</li>
+<li>Ergebnis: bis zu 85% Defektkorrektur</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('twostage')">Mehr erfahren</button>
+</div>
+<div class="package-card">
+<div class="package-tier">Politur 03</div>
+<div class="package-name">Mehrstufige Korrektur</div>
+<div class="package-price">699–1099€</div>
+<div class="package-time">⏱ 3+ Stufen · Wäsche inkl.</div>
+<p class="package-desc">Vollständige Lackkorrektur für stark beschädigte Fahrzeuge oder vor Keramikbeschichtung.</p>
+<ul class="package-features">
+<li>Handwäsche inklusive</li>
+<li>Mehrstufiger Prozess mit verschiedenen Pasten</li>
+<li>Schichtdickenmessung (Paint Gauge)</li>
+<li>Ergebnis: bis zu 95% Defektkorrektur</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('multistage')">Mehr erfahren</button>
+</div>
+</div>
+</div>
+</section>
+<section class="contact-section">
+<div class="section-eyebrow">Kontakt</div>
+<h2 class="section-title">Termin vereinbaren</h2>
+<div class="contact-grid">
+<div>
+<div class="contact-item"><span class="contact-label">Telefon</span><a href="tel:+4917641528287" class="contact-value">+49 176 415 28 287</a></div>
+<div class="contact-item"><span class="contact-label">E-Mail</span><a href="mailto:glanzwerkk@gmail.com" class="contact-value">glanzwerkk@gmail.com</a></div>
+<div class="contact-item"><span class="contact-label">Adresse</span><span class="contact-value">Ohlweg 5, 22885 Barsbüttel</span></div>
+<div class="contact-cta-group">
+<a href="tel:+4917641528287" class="btn-primary">Jetzt anrufen</a>
+<a href="mailto:glanzwerkk@gmail.com?subject=Anfrage Autodetailing" class="btn-outline">E-Mail schreiben</a>
+<a href="https://www.instagram.com/ostrowski_autodetailing?igsh=eTA1YXd4M3JkcTA5" target="_blank" class="btn-outline">Instagram</a>
+</div>
+</div>
+<div><p class="contact-note">Preise können je nach Fahrzeuggröße und Lackzustand variieren.<br><br>Rufen Sie für eine kostenlose Bewertung an — ich berate Sie gerne persönlich.</p></div>
+</div>
+</section>
+</div>
+
+<!-- ════════════ ENGLISH ════════════ -->
+<div id="lang-en" class="lang-section">
+<section id="pakiety-en">
+<div class="section-eyebrow">Services</div>
+<h2 class="section-title">What I offer</h2>
+<div class="service-tabs">
+<button class="tab-btn active" onclick="switchTab('en','detailing',this)">Detailing</button>
+<button class="tab-btn" onclick="switchTab('en','polishing',this)">Polishing</button>
+</div>
+<div id="en-detailing" class="tab-content active">
+<p class="section-lead">Professional vehicle detailing focused on quality, protection and value. By appointment only — limited slots available on weekends.</p>
+<div class="packages-grid">
+<div class="package-card">
+<div class="package-tier">Package 01</div>
+<div class="package-name">Interior Detail</div>
+<div class="package-price">199–299€</div>
+<div class="package-time">⏱ Interior Detail</div>
+<p class="package-desc">Thorough deep cleaning of the interior including upholstery, carpets and sensitive materials.</p>
+<ul class="package-features">
+<li>Vacuuming & detail cleaning</li>
+<li>Upholstery cleaning (extraction)</li>
+<li>Headliner cleaning</li>
+<li>Leather & Alcantara care</li>
+<li>Interior plastic care</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('interior')">Learn more</button>
+</div>
+<div class="package-card">
+<div class="package-tier">Package 02</div>
+<div class="package-name">Exterior + Paint Protection</div>
+<div class="package-price">149–199€</div>
+<div class="package-time">⏱ Exterior Care</div>
+<p class="package-desc">Intensive paint cleaning with ceramic protection (ADBL Ceramic Sealant) for gloss and hydrophobicity.</p>
+<ul class="package-features">
+<li>Hand wash & rims</li>
+<li>Decontamination</li>
+<li>Paint preparation</li>
+<li>Ceramic protection (3–6 months)</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('exterior')">Learn more</button>
+</div>
+<div class="package-card featured">
+<div class="package-tier">Package 03</div>
+<div class="package-name">Full Detail</div>
+<div class="package-price">299–399€</div>
+<div class="package-time">⏱ Full Detail (In + Out)</div>
+<p class="package-desc">Interior + exterior in one. €50 cheaper than both packages separately.</p>
+<ul class="package-features">
+<li>Full interior cleaning</li>
+<li>Exterior preparation</li>
+<li>Plastic care</li>
+<li>Ceramic paint protection (3–6 months)</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('full')">Learn more</button>
+</div>
+<div class="package-card">
+<div class="package-tier">Package 04</div>
+<div class="package-name">Ceramic Coating</div>
+<div class="package-price">699–1499€</div>
+<div class="package-time">⏱ Ceramic Coating</div>
+<p class="package-desc">Long-term protection for paint, glass and plastic. Your vehicle stays cleaner longer and is easier to maintain.</p>
+<ul class="package-features">
+<li>Paint preparation</li>
+<li>Ceramic coating</li>
+<li>Optional: windows & plastic</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('ceramic')">Learn more</button>
+</div>
+</div>
+</div>
+<div id="en-polishing" class="tab-content">
+<p class="section-lead">Paint correction restores gloss and colour depth. <strong>A hand wash is included in every polishing package.</strong> I choose the method based on your paint's condition.</p>
+<div class="packages-grid">
+<div class="package-card">
+<div class="package-tier">Polishing 01</div>
+<div class="package-name">One Step</div>
+<div class="package-price">299–399€</div>
+<div class="package-time">⏱ 1 stage · wash included</div>
+<p class="package-desc">Light correction in one pass — ideal for cars in good condition with minor scratches and holograms.</p>
+<ul class="package-features">
+<li>Hand wash included</li>
+<li>Removal of light scratches and swirl marks</li>
+<li>Improved gloss and colour depth</li>
+<li>Result: up to 50–70% defect correction</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('onestep')">Learn more</button>
+</div>
+<div class="package-card featured">
+<div class="package-tier">Polishing 02</div>
+<div class="package-name">2 Stage</div>
+<div class="package-price">449–599€</div>
+<div class="package-time">⏱ 2 stages · wash included</div>
+<p class="package-desc">Two-stage correction — heavy cut first, then finishing. For cars with moderate paint defects.</p>
+<ul class="package-features">
+<li>Hand wash included</li>
+<li>Stage 1: cutting compound (heavy cut)</li>
+<li>Stage 2: finishing compound</li>
+<li>Result: up to 85% defect correction</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('twostage')">Learn more</button>
+</div>
+<div class="package-card">
+<div class="package-tier">Polishing 03</div>
+<div class="package-name">Multi-Stage</div>
+<div class="package-price">699–1099€</div>
+<div class="package-time">⏱ 3+ stages · wash included</div>
+<p class="package-desc">Full paint correction for heavily neglected cars or as preparation before ceramic coating.</p>
+<ul class="package-features">
+<li>Hand wash included</li>
+<li>Multi-stage process with various compounds</li>
+<li>Paint thickness measurement (paint gauge)</li>
+<li>Result: up to 95% defect correction</li>
+</ul>
+<button class="btn-learn-more" onclick="openModal('multistage')">Learn more</button>
+</div>
+</div>
+</div>
+</section>
+<section class="contact-section">
+<div class="section-eyebrow">Contact</div>
+<h2 class="section-title">Book an appointment</h2>
+<div class="contact-grid">
+<div>
+<div class="contact-item"><span class="contact-label">Phone</span><a href="tel:+4917641528287" class="contact-value">+49 176 415 28 287</a></div>
+<div class="contact-item"><span class="contact-label">Email</span><a href="mailto:glanzwerkk@gmail.com" class="contact-value">glanzwerkk@gmail.com</a></div>
+<div class="contact-item"><span class="contact-label">Address</span><span class="contact-value">Ohlweg 5, 22885 Barsbüttel</span></div>
+<div class="contact-cta-group">
+<a href="tel:+4917641528287" class="btn-primary">Call now</a>
+<a href="mailto:glanzwerkk@gmail.com?subject=Auto Detailing Inquiry" class="btn-outline">Send email</a>
+<a href="https://www.instagram.com/ostrowski_autodetailing?igsh=eTA1YXd4M3JkcTA5" target="_blank" class="btn-outline">Instagram</a>
+</div>
+</div>
+<div><p class="contact-note">Prices may vary depending on vehicle size and paint condition.<br><br>Call for a free quote — I'll be happy to advise you personally.</p></div>
+</div>
+</section>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+<div class="modal-box">
+<button class="modal-close" onclick="closeModal()">✕</button>
+<div class="modal-eyebrow" id="modal-eyebrow"></div>
+<h2 class="modal-title" id="modal-title"></h2>
+<div class="modal-price" id="modal-price"></div>
+<ul class="modal-steps" id="modal-steps"></ul>
+<div class="modal-result" id="modal-result"></div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<span class="footer-copy">© Piotr Ostrowski — Auto Detailing</span>
+<div class="footer-social">
+<a href="https://www.instagram.com/ostrowski_autodetailing?igsh=eTA1YXd4M3JkcTA5" target="_blank">@ostrowski_autodetailing</a>
+</div>
+</footer>
+
+<script>
+// ── LANGUAGE TRANSLATIONS ──
+const translations = {
+de: { 'btn-call':'Jetzt anrufen','btn-packages':'Leistungen ansehen','nav-packages':'Leistungen','nav-contact':'Kontakt' },
+pl: { 'btn-call':'Zadzwoń teraz','btn-packages':'Zobacz usługi','nav-packages':'Usługi','nav-contact':'Kontakt' },
+en: { 'btn-call':'Call now','btn-packages':'See services','nav-packages':'Services','nav-contact':'Contact' }
+};
+const packageHref = { de:'#pakiety-de', pl:'#pakiety', en:'#pakiety-en' };
+
+function applyTranslations(lang) {
+const t = translations[lang];
+document.querySelectorAll('[data-translate]').forEach(function(el) {
+const key = el.getAttribute('data-translate');
+if (t && t[key]) el.innerHTML = t[key];
+});
+var pkgBtn = document.querySelector('[data-translate="btn-packages"]');
+if (pkgBtn) pkgBtn.setAttribute('href', packageHref[lang]);
+var navPkg = document.querySelector('[data-translate="nav-packages"]');
+if (navPkg) navPkg.setAttribute('href', packageHref[lang]);
+}
+
+function switchLang(lang, btn) {
+document.querySelectorAll('.lang-section').forEach(function(s) { s.classList.remove('active'); });
+document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+document.getElementById('lang-' + lang).classList.add('active');
+if (btn) btn.classList.add('active');
+applyTranslations(lang);
+}
+
+function switchTab(lang, tab, btn) {
+var prefix = lang + '-';
+document.querySelectorAll('[id^="' + prefix + '"]').forEach(function(el) { el.classList.remove('active'); });
+var siblingBtns = btn.closest('.service-tabs').querySelectorAll('.tab-btn');
+siblingBtns.forEach(function(b) { b.classList.remove('active'); });
+document.getElementById(prefix + tab).classList.add('active');
+btn.classList.add('active');
+}
+
+// ── PACKAGE DETAIL DATA ──
+const packageData = {
+de: {
+interior: {
+eyebrow: 'Detailing · Paket 01',
+title: 'Innenreinigung',
+price: '199 – 299 €',
+steps: [
+{ title: 'Vorstaubsaugen', desc: 'Gründliches Vorsaugen des gesamten Innenraums — Sitze, Teppiche, Kofferraum.' },
+{ title: 'Cockpit & Kunststoffflächen', desc: 'Reinigung aller Kunststoff- und Hartflächen mit geeigneten Reinigern. Lüftungsschlitze, Knöpfe, Ablagen.' },
+{ title: 'Polsterreinigung (Extraktion)', desc: 'Tiefenreinigung von Stoff, Leder oder Alcantara mit Extraktionsmaschine. Entfernt eingedrungene Schmutzpartikel und Gerüche.' },
+{ title: 'Dachhimmel', desc: 'Schonende Reinigung des Dachhimmels — je nach Material mit spezifischen Reinigern.' },
+{ title: 'Teppiche & Fußmatten', desc: 'Extraktion der Bodenteppiche und Reinigung der Gummimatten.' },
+{ title: 'Scheiben innen', desc: 'Streifenfreie Reinigung aller Innenscheiben.' },
+{ title: 'Leder- & Kunststoffpflege', desc: 'Pflege und Imprägnierung von Leder, Alcantara und Kunststoffoberflächen.' },
+{ title: 'Abschlusskontrolle', desc: 'Finales Saugen, Kontrolle aller Oberflächen, Übergabe.' }
+ ],
+result: 'Ergebnis: Frischer, sauberer Innenraum — Gerüche reduziert, Materialien gepflegt und geschützt.'
+},
+exterior: {
+eyebrow: 'Detailing · Paket 02',
+title: 'Außenpflege + Lackschutz',
+price: '149 – 199 €',
+steps: [
+{ title: 'Vorwäsche (Pre-Wash)', desc: 'Aktivschaum löst groben Schmutz und Insektenreste, ohne den Lack zu berühren.' },
+{ title: 'Felgen & Radkästen', desc: 'Spezialreiniger für Felgen und Radhäuser — Bremsstaubentfernung, Teerverdünner.' },
+{ title: 'Handwäsche', desc: 'Sorgfältige Handwäsche mit zwei Eimern und Waschhandschuh — minimales Kratzerrisiko.' },
+{ title: 'Chemische Dekontamination', desc: 'Eisenentferner löst metallische Partikel aus dem Lack — sichtbar durch violette Reaktion.' },
+{ title: 'Trocknung', desc: 'Trocknung mit Druckluft und saugfähigen Mikrofasertüchern.' },
+{ title: 'ADBL Ceramic Sealant', desc: 'Auftragen der keramischen Versiegelung — schützt Lack vor UV, Schmutz und Wasser für 3–6 Monate.' },
+{ title: 'Abschlusskontrolle', desc: 'Kontrolle auf gleichmäßige Verteilung, Reifenpflege, finales Abstauben.' }
+ ],
+result: 'Ergebnis: Glänzender, hydrophober Lack mit bis zu 6 Monaten Schutz durch ADBL Ceramic Sealant.'
+},
+full: {
+eyebrow: 'Detailing · Paket 03',
+title: 'Komplettaufbereitung',
+price: '299 – 399 €',
+steps: [
+{ title: 'Innenreinigung komplett', desc: 'Alle Schritte der Innenreinigung (Paket 01).' },
+{ title: 'Außenwäsche & Dekontamination', desc: 'Alle Schritte der Außenpflege (Paket 02).' },
+{ title: 'Kunststoffpflege außen', desc: 'Pflege aller Außenkunststoffe — Stoßstangen, Türrahmen, Dichtungen.' },
+{ title: 'ADBL Ceramic Sealant', desc: 'Keramische Versiegelung für 3–6 Monate Schutz.' },
+{ title: 'Abschlusskontrolle', desc: 'Gesamtinspektion innen und außen vor der Übergabe.' }
+ ],
+result: 'Ergebnis: Komplett aufbereitetes Fahrzeug — innen sauber und gepflegt, außen glänzend und geschützt. 50 € günstiger als beide Pakete einzeln.'
+},
+ceramic: {
+eyebrow: 'Detailing · Paket 04',
+title: 'Keramikversiegelung',
+price: '699 – 1499 €',
+steps: [
+{ title: 'Komplette Außenwäsche', desc: 'Vorwäsche, Handwäsche, Felgenreinigung, Dekontamination.' },
+{ title: 'Clay-Bar-Behandlung', desc: 'Entfernung eingebetteter Partikel (Flugrost, Teer) aus dem Lack — Vorbereitung für die Beschichtung.' },
+{ title: 'Schichtdickenmessung', desc: 'Messung mit Paint Gauge an mehreren Punkten — Kontrolle der Lackreserve.' },
+{ title: 'Lackvorbereitung', desc: 'Reinigung mit IPA (Isopropanol) — entfettet und bereitet den Lack für optimale Haftung vor.' },
+{ title: 'Auftragen der Keramikbeschichtung', desc: 'Schichtweises Auftragen der Keramik auf alle Lackflächen, optional Scheiben und Kunststoff.' },
+{ title: 'Aushärtungszeit', desc: 'Das Fahrzeug muss nach der Beschichtung mehrere Stunden in der Halle bleiben.' },
+{ title: 'Abschlusskontrolle', desc: 'Inspektion auf gleichmäßige Versiegelung, Nachbehandlung von Stellen.' }
+ ],
+result: 'Ergebnis: Langfristiger Schutz für 1–3 Jahre. Hydrophobie, UV-Schutz, leichtere Reinigung. Hinweis: Für optimale Ergebnisse empfehlen wir eine Politur vor der Keramikbeschichtung.'
+},
+onestep: {
+eyebrow: 'Politur · Stufe 01',
+title: 'One Step',
+price: '299 – 399 € (inkl. Wäsche)',
+steps: [
+{ title: 'Vorwäsche + Handwäsche', desc: 'Aktivschaum, dann sorgfältige Handwäsche — saubere Basis für die Politur.' },
+{ title: 'Chemische Dekontamination', desc: 'Eisenentferner löst metallische Partikel aus dem Lack.' },
+{ title: 'Clay-Bar', desc: 'Mechanische Entfernung eingebetteter Partikel — der Lack muss glatt wie Glas sein.' },
+{ title: 'Lackkontrolle', desc: 'Inspektion unter LED-Licht — Beurteilung der Defekte (Swirls, Kratzer, Hologramme).' },
+{ title: 'Abkleben', desc: 'Schutz von Gummi, Plastik und Chromteilen mit Malerband.' },
+{ title: 'Maschinenpolitur (DA)', desc: 'Polieren mit einer Dual-Action-Maschine — eine Paste und ein Pad als Kompromiss zwischen Schnitt und Glanz.' },
+{ title: 'Pastenentfernung & Inspektion', desc: 'Entfernung aller Pastenreste, finale Lackkontrolle unter Licht.' }
+ ],
+result: 'Ergebnis: bis zu 50–70 % Defektkorrektur. Empfohlen für Fahrzeuge in gutem Zustand mit leichten Swirls und Hologrammen.'
+},
+twostage: {
+eyebrow: 'Politur · Stufe 02',
+title: '2 Stufen',
+price: '449 – 599 € (inkl. Wäsche)',
+steps: [
+{ title: 'Vorwäsche + Handwäsche', desc: 'Wie One Step — saubere Ausgangsbasis.' },
+{ title: 'Dekontamination + Clay-Bar', desc: 'Chemische und mechanische Dekontamination des Lacks.' },
+{ title: 'Schichtdickenmessung', desc: 'Kontrolle der Lackschichtdicke vor der Politur — Sicherheit.' },
+{ title: 'Lackkontrolle', desc: 'Detaillierte Inspektion unter starkem LED-Licht — Kartierung der Defekte.' },
+{ title: 'Abkleben', desc: 'Schutz aller empfindlichen Bereiche.' },
+{ title: 'Stufe 1 — Heavy Cut', desc: 'Aggressive Schneidpaste entfernt tiefe Kratzer, Oxidation und starke Swirls.' },
+{ title: 'Stufe 2 — Finishing', desc: 'Finishpaste glättet die Mikrokratzer der Schneidpaste — maximaler Glanz.' },
+{ title: 'Pastenentfernung & finale Inspektion', desc: 'Kontrolle unter LED/UV-Licht auf verbleibende Defekte.' }
+ ],
+result: 'Ergebnis: bis zu 85 % Defektkorrektur. Empfohlen für Fahrzeuge mit mittleren bis stärkeren Lack­mängeln.'
+},
+multistage: {
+eyebrow: 'Politur · Stufe 03',
+title: 'Mehrstufige Korrektur',
+price: '699 – 1099 € (inkl. Wäsche)',
+steps: [
+{ title: 'Vorwäsche + Handwäsche', desc: 'Gründlichste Vorbereitung — kein Schmutzpartikel darf während der Politur auf dem Lack sein.' },
+{ title: 'Dekontamination + Clay-Bar', desc: 'Vollständige chemische und mechanische Dekontamination.' },
+{ title: 'Schichtdickenmessung', desc: 'Messung an vielen Punkten — essenziell um Lack­verdünnung zu vermeiden.' },
+{ title: 'Detaillierte Lackkartierung', desc: 'Jede Zone wird unter starkem Licht beurteilt und je nach Defekttiefe mit einer eigenen Strategie behandelt.' },
+{ title: 'Abkleben', desc: 'Vollständiger Schutz aller Kanten, Gummis und Plastikteile.' },
+{ title: 'Schritt 1 — Aggressive Paste', desc: 'Heavy Cut — Entfernung tiefer Kratzer, starker Oxidation, alter Politurrückstände.' },
+{ title: 'Schritt 2 — Mittlere Paste', desc: 'Medium Cut — entfernt die durch Heavy Cut hinterlassenen Mikrokratzer.' },
+{ title: 'Schritt 3 — Finishing', desc: 'Finishpaste für maximalen, klaren Glanz und Farbtiefe.' },
+{ title: 'Finale Inspektion', desc: 'Kontrolle unter LED/UV — erst wenn das Ergebnis stimmt, ist die Politur fertig.' }
+ ],
+result: 'Ergebnis: bis zu 95 % Defektkorrektur. Für stark beschädigte Fahrzeuge oder als Vorbereitung für eine Keramikbeschichtung. Dies ist die professionellste Politurstufe.'
+}
+}
+};
+
+// Build PL and EN from DE structure, with translated content
+packageData.pl = {
+interior: {
+eyebrow: 'Detailing · Pakiet 01', title: 'Czyszczenie wnętrza', price: '199 – 299 €',
+steps: [
+{ title: 'Wstępne odkurzanie', desc: 'Gruntowne odkurzanie całego wnętrza — fotele, dywany, bagażnik.' },
+{ title: 'Kokpit i plastiki', desc: 'Czyszczenie wszystkich plastikowych i twardych powierzchni. Kratki, guziki, schowki.' },
+{ title: 'Pranie tapicerki (ekstrakcja)', desc: 'Głębokie czyszczenie tkaniny, skóry lub alcantary maszyną ekstrakcyjną. Usuwa zabrudzenia i nieprzyjemne zapachy.' },
+{ title: 'Podsufitka', desc: 'Delikatne czyszczenie podsufitki odpowiednimi środkami do danego materiału.' },
+{ title: 'Dywany i maty', desc: 'Ekstrakcja dywanów podłogowych i czyszczenie gumowych mat.' },
+{ title: 'Szyby od wewnątrz', desc: 'Bezprążkowe czyszczenie wszystkich szyb wewnętrznych.' },
+{ title: 'Pielęgnacja skóry i plastiku', desc: 'Pielęgnacja i impregnacja skóry, alcantary i powierzchni plastikowych.' },
+{ title: 'Kontrola końcowa', desc: 'Ostateczne odkurzanie, kontrola wszystkich powierzchni, wydanie pojazdu.' }
+ ],
+result: 'Efekt: świeże, czyste wnętrze — zapachy zredukowane, materiały pielęgnowane i chronione.'
+},
+exterior: {
+eyebrow: 'Detailing · Pakiet 02', title: 'Pielęgnacja zewnętrzna', price: '149 – 199 €',
+steps: [
+{ title: 'Mycie wstępne (pre-wash)', desc: 'Aktywna piana rozpuszcza grube zabrudzenia i owady bez dotykania lakieru.' },
+{ title: 'Felgi i wnęki kołowe', desc: 'Specjalne środki do felg i wnęk — usunięcie pyłu hamulcowego i smoły.' },
+{ title: 'Mycie ręczne', desc: 'Staranne mycie ręczne metodą dwóch wiaderek z rękawicą — minimalne ryzyko zarysowań.' },
+{ title: 'Dekontaminacja chemiczna', desc: 'Środek do usuwania żelaza wyciąga metaliczne cząstki z lakieru — widoczna fioletowa reakcja.' },
+{ title: 'Osuszanie', desc: 'Osuszanie sprężonym powietrzem i chłonnymi mikrofibrowymi ręcznikami.' },
+{ title: 'ADBL Ceramic Sealant', desc: 'Nanoszenie ceramicznego zabezpieczenia — chroni lakier przed UV, brudem i wodą przez 3–6 miesięcy.' },
+{ title: 'Kontrola końcowa', desc: 'Kontrola równomiernego pokrycia, pielęgnacja opon, ostateczne odpylenie.' }
+ ],
+result: 'Efekt: błyszczący, hydrofobowy lakier z ochroną do 6 miesięcy dzięki ADBL Ceramic Sealant.'
+},
+full: {
+eyebrow: 'Detailing · Pakiet 03', title: 'Pełny detailing', price: '299 – 399 €',
+steps: [
+{ title: 'Pełne czyszczenie wnętrza', desc: 'Wszystkie kroki czyszczenia wnętrza (Pakiet 01).' },
+{ title: 'Mycie zewnętrzne i dekontaminacja', desc: 'Wszystkie kroki pielęgnacji zewnętrznej (Pakiet 02).' },
+{ title: 'Pielęgnacja plastiku zewnętrznego', desc: 'Pielęgnacja zderzaków, uszczelek i ram drzwi.' },
+{ title: 'ADBL Ceramic Sealant', desc: 'Ceramiczne zabezpieczenie lakieru na 3–6 miesięcy.' },
+{ title: 'Kontrola końcowa', desc: 'Kompleksowa inspekcja wewnątrz i zewnątrz przed wydaniem.' }
+ ],
+result: 'Efekt: kompleksowo przygotowany pojazd — wnętrze czyste i zadbane, zewnętrze błyszczące i chronione. 50€ taniej niż oba pakiety osobno.'
+},
+ceramic: {
+eyebrow: 'Detailing · Pakiet 04', title: 'Powłoka ceramiczna', price: '699 – 1499 €',
+steps: [
+{ title: 'Kompleksowe mycie zewnętrzne', desc: 'Pre-wash, mycie ręczne, czyszczenie felg, dekontaminacja.' },
+{ title: 'Clay bar', desc: 'Mechaniczne usunięcie zatopionych cząstek (rdzawy pył, smoła) — lakier musi być gładki jak szkło.' },
+{ title: 'Pomiar grubości lakieru', desc: 'Pomiary miernikiem (paint gauge) w wielu punktach — kontrola rezerwy lakieru.' },
+{ title: 'Przygotowanie lakieru (IPA)', desc: 'Odtłuszczenie izopropanolem — zapewnia optymalną przyczepność powłoki.' },
+{ title: 'Nanoszenie powłoki ceramicznej', desc: 'Warstwowe nakładanie ceramiki na wszystkie powierzchnie lakierowane, opcjonalnie szyby i plastik.' },
+{ title: 'Czas utwardzania', desc: 'Pojazd musi pozostać w hali przez kilka godzin po nałożeniu powłoki.' },
+{ title: 'Kontrola końcowa', desc: 'Inspekcja równomierności powłoki, obróbka punktowa.' }
+ ],
+result: 'Efekt: długoterminowa ochrona przez 1–3 lata. Hydrofobowość, ochrona UV, łatwiejsze czyszczenie. Uwaga: dla najlepszych efektów zalecamy polerowanie przed powłoką ceramiczną.'
+},
+onestep: {
+eyebrow: 'Polerowanie · Etap 01', title: 'One Step', price: '299 – 399 € (mycie w cenie)',
+steps: [
+{ title: 'Pre-wash + mycie ręczne', desc: 'Aktywna piana i staranne mycie ręczne — czysta baza przed polerowaniem.' },
+{ title: 'Dekontaminacja chemiczna', desc: 'Środek żelazowy wyciąga metaliczne cząstki z lakieru.' },
+{ title: 'Clay bar', desc: 'Mechaniczne usunięcie zatopionych cząstek — lakier musi być gładki jak szkło.' },
+{ title: 'Kontrola lakieru', desc: 'Inspekcja pod lampą LED — ocena defektów (swirle, rysy, hologramy).' },
+{ title: 'Taśmowanie', desc: 'Zabezpieczenie gumy, plastiku i chromu taśmą malarską.' },
+{ title: 'Polerowanie maszyną DA', desc: 'Polerowanie maszyną dual-action — jedna pasta i jeden pad jako kompromis między cięciem a połyskiem.' },
+{ title: 'Usunięcie pasty i inspekcja', desc: 'Usunięcie resztek pasty, finalna kontrola lakieru pod światłem.' }
+ ],
+result: 'Efekt: do 50–70% korekcji defektów. Polecane dla aut w dobrym stanie z lekkimi swirlami i hologramami.'
+},
+twostage: {
+eyebrow: 'Polerowanie · Etap 02', title: '2 etapy', price: '449 – 599 € (mycie w cenie)',
+steps: [
+{ title: 'Pre-wash + mycie ręczne', desc: 'Jak One Step — czysta baza wyjściowa.' },
+{ title: 'Dekontaminacja + clay bar', desc: 'Chemiczna i mechaniczna dekontaminacja lakieru.' },
+{ title: 'Pomiar grubości lakieru', desc: 'Kontrola grubości powłoki przed polerowaniem — bezpieczeństwo.' },
+{ title: 'Kontrola lakieru', desc: 'Szczegółowa inspekcja pod mocną lampą LED — mapowanie defektów.' },
+{ title: 'Taśmowanie', desc: 'Ochrona wszystkich wrażliwych obszarów.' },
+{ title: 'Etap 1 — Heavy Cut', desc: 'Agresywna pasta tnąca usuwa głębsze rysy, oksydację i mocne swirle.' },
+{ title: 'Etap 2 — Finishing', desc: 'Pasta wykańczająca wygładza mikrorysy po cięciu — maksymalny połysk.' },
+{ title: 'Usunięcie pasty i finalna inspekcja', desc: 'Kontrola pod lampą LED/UV na pozostałe defekty.' }
+ ],
+result: 'Efekt: do 85% korekcji defektów. Polecane dla aut ze średnimi i większymi wadami lakieru.'
+},
+multistage: {
+eyebrow: 'Polerowanie · Etap 03', title: 'Wieloetapowe', price: '699 – 1099 € (mycie w cenie)',
+steps: [
+{ title: 'Pre-wash + mycie ręczne', desc: 'Najbardziej staranne przygotowanie — żadna cząstka brudu nie może być na lakierze podczas polerowania.' },
+{ title: 'Dekontaminacja + clay bar', desc: 'Pełna chemiczna i mechaniczna dekontaminacja.' },
+{ title: 'Pomiar grubości lakieru', desc: 'Pomiary w wielu punktach — niezbędne aby uniknąć przebicia lakieru.' },
+{ title: 'Szczegółowe mapowanie defektów', desc: 'Każda strefa oceniana pod mocnym światłem i traktowana osobną strategią w zależności od głębokości defektów.' },
+{ title: 'Taśmowanie', desc: 'Pełna ochrona krawędzi, gumy i plastiku.' },
+{ title: 'Krok 1 — Agresywna pasta', desc: 'Heavy cut — usunięcie głębokich rys, silnej oksydacji, starych pozostałości pasty.' },
+{ title: 'Krok 2 — Średnia pasta', desc: 'Medium cut — usunięcie mikrorys pozostawionych przez heavy cut.' },
+{ title: 'Krok 3 — Finishing', desc: 'Pasta wykańczająca dla maksymalnego, czystego połysku i głębi koloru.' },
+{ title: 'Finalna inspekcja', desc: 'Kontrola pod lampą LED/UV — polerowanie kończy się dopiero gdy efekt jest zadowalający.' }
+ ],
+result: 'Efekt: do 95% korekcji defektów. Dla aut mocno zniszczonych lub jako przygotowanie przed powłoką ceramiczną. Najbardziej profesjonalny etap korekty lakieru.'
+}
+};
+
+packageData.en = {
+interior: {
+eyebrow: 'Detailing · Package 01', title: 'Interior Detail', price: '199 – 299 €',
+steps: [
+{ title: 'Pre-vacuum', desc: 'Thorough vacuuming of the entire interior — seats, carpets, boot.' },
+{ title: 'Dashboard & plastics', desc: 'Cleaning of all plastic and hard surfaces. Vents, buttons, storage compartments.' },
+{ title: 'Upholstery cleaning (extraction)', desc: 'Deep cleaning of fabric, leather or Alcantara with extraction machine. Removes embedded dirt and odours.' },
+{ title: 'Headliner', desc: 'Gentle cleaning of the headliner with material-specific products.' },
+{ title: 'Carpets & mats', desc: 'Extraction of floor carpets and cleaning of rubber mats.' },
+{ title: 'Windows inside', desc: 'Streak-free cleaning of all interior glass surfaces.' },
+{ title: 'Leather & plastic care', desc: 'Conditioning and protection of leather, Alcantara and plastic surfaces.' },
+{ title: 'Final inspection', desc: 'Final vacuum, surface check, vehicle handover.' }
+ ],
+result: 'Result: fresh, clean interior — odours reduced, materials conditioned and protected.'
+},
+exterior: {
+eyebrow: 'Detailing · Package 02', title: 'Exterior + Paint Protection', price: '149 – 199 €',
+steps: [
+{ title: 'Pre-wash', desc: 'Active foam dissolves heavy dirt and insects without touching the paint.' },
+{ title: 'Wheels & wheel arches', desc: 'Specialist wheel cleaner and arch cleaner — brake dust and tar removal.' },
+{ title: 'Hand wash', desc: 'Careful two-bucket hand wash with wash mitt — minimal scratch risk.' },
+{ title: 'Chemical decontamination', desc: 'Iron remover draws metallic particles out of the paint — visible purple reaction.' },
+{ title: 'Drying', desc: 'Drying with compressed air and absorbent microfibre towels.' },
+{ title: 'ADBL Ceramic Sealant', desc: 'Application of ceramic sealant — protects paint from UV, dirt and water for 3–6 months.' },
+{ title: 'Final inspection', desc: 'Even coverage check, tyre dressing, final wipe down.' }
+ ],
+result: 'Result: glossy, hydrophobic paint with up to 6 months of protection from ADBL Ceramic Sealant.'
+},
+full: {
+eyebrow: 'Detailing · Package 03', title: 'Full Detail', price: '299 – 399 €',
+steps: [
+{ title: 'Full interior detail', desc: 'All steps from Interior Detail (Package 01).' },
+{ title: 'Exterior wash & decontamination', desc: 'All steps from Exterior Care (Package 02).' },
+{ title: 'Exterior plastic care', desc: 'Care of all exterior plastics — bumpers, door frames, seals.' },
+{ title: 'ADBL Ceramic Sealant', desc: 'Ceramic sealant for 3–6 months of paint protection.' },
+{ title: 'Final inspection', desc: 'Full inspection inside and out before handover.' }
+ ],
+result: 'Result: fully detailed vehicle — clean and conditioned inside, glossy and protected outside. €50 cheaper than both packages separately.'
+},
+ceramic: {
+eyebrow: 'Detailing · Package 04', title: 'Ceramic Coating', price: '699 – 1499 €',
+steps: [
+{ title: 'Full exterior wash', desc: 'Pre-wash, hand wash, wheel cleaning, decontamination.' },
+{ title: 'Clay bar treatment', desc: 'Mechanical removal of embedded particles (iron, tar) — paint must be smooth as glass.' },
+{ title: 'Paint thickness measurement', desc: 'Readings taken at multiple points with paint gauge — checking paint depth.' },
+{ title: 'Paint preparation (IPA)', desc: 'Degreasing with isopropanol — ensures optimal coating adhesion.' },
+{ title: 'Ceramic coating application', desc: 'Layer-by-layer application on all painted surfaces, optionally glass and plastic.' },
+{ title: 'Curing time', desc: 'Vehicle must remain in the workshop for several hours after coating.' },
+{ title: 'Final inspection', desc: 'Coating evenness check, spot treatment.' }
+ ],
+result: 'Result: long-term protection for 1–3 years. Hydrophobicity, UV protection, easier cleaning. Note: for best results, a polishing treatment before ceramic coating is recommended.'
+},
+onestep: {
+eyebrow: 'Polishing · Stage 01', title: 'One Step', price: '299 – 399 € (wash included)',
+steps: [
+{ title: 'Pre-wash + hand wash', desc: 'Active foam and careful hand wash — clean base for polishing.' },
+{ title: 'Chemical decontamination', desc: 'Iron remover draws metallic particles from the paint.' },
+{ title: 'Clay bar', desc: 'Mechanical removal of embedded particles — paint must be smooth as glass.' },
+{ title: 'Paint inspection', desc: 'Inspection under LED light — assessment of defects (swirls, scratches, holograms).' },
+{ title: 'Masking', desc: 'Protection of rubber, plastic and chrome with masking tape.' },
+{ title: 'Machine polishing (DA)', desc: 'Polishing with dual-action machine — one compound and one pad as a balance between cut and gloss.' },
+{ title: 'Compound removal & inspection', desc: 'All residue removed, final paint check under light.' }
+ ],
+result: 'Result: up to 50–70% defect correction. Recommended for vehicles in good condition with light swirls and holograms.'
+},
+twostage: {
+eyebrow: 'Polishing · Stage 02', title: '2 Stage', price: '449 – 599 € (wash included)',
+steps: [
+{ title: 'Pre-wash + hand wash', desc: 'Same as One Step — clean starting point.' },
+{ title: 'Decontamination + clay bar', desc: 'Chemical and mechanical paint decontamination.' },
+{ title: 'Paint thickness measurement', desc: 'Checking paint depth before polishing — safety first.' },
+{ title: 'Paint inspection', desc: 'Detailed inspection under strong LED — defect mapping.' },
+{ title: 'Masking', desc: 'Full protection of all sensitive areas.' },
+{ title: 'Stage 1 — Heavy Cut', desc: 'Aggressive cutting compound removes deeper scratches, oxidation and heavy swirls.' },
+{ title: 'Stage 2 — Finishing', desc: 'Finishing compound polishes out micro-scratches from cutting — maximum gloss.' },
+{ title: 'Compound removal & final inspection', desc: 'Check under LED/UV for remaining defects.' }
+ ],
+result: 'Result: up to 85% defect correction. Recommended for vehicles with moderate to significant paint defects.'
+},
+multistage: {
+eyebrow: 'Polishing · Stage 03', title: 'Multi-Stage', price: '699 – 1099 € (wash included)',
+steps: [
+{ title: 'Pre-wash + hand wash', desc: 'Most thorough preparation — not a single particle of dirt on the paint during polishing.' },
+{ title: 'Decontamination + clay bar', desc: 'Full chemical and mechanical decontamination.' },
+{ title: 'Paint thickness measurement', desc: 'Multiple readings at many points — essential to avoid burning through the paint.' },
+{ title: 'Detailed defect mapping', desc: 'Every panel assessed under strong light with its own strategy based on defect depth.' },
+{ title: 'Masking', desc: 'Full protection of all edges, rubber and plastic.' },
+{ title: 'Step 1 — Aggressive compound', desc: 'Heavy cut — removes deep scratches, heavy oxidation and old polish residue.' },
+{ title: 'Step 2 — Medium compound', desc: 'Medium cut — removes micro-scratches left by heavy cut.' },
+{ title: 'Step 3 — Finishing', desc: 'Finishing compound for maximum clear gloss and colour depth.' },
+{ title: 'Final inspection', desc: 'Check under LED/UV — polishing is only complete when the result is right.' }
+ ],
+result: 'Result: up to 95% defect correction. For heavily damaged vehicles or as preparation before ceramic coating. The most professional level of paint correction.'
+}
+};
+
+// ── MODAL LOGIC ──
+var currentLang = 'de';
+
+function openModal(packageKey) {
+var lang = currentLang;
+var data = packageData[lang] && packageData[lang][packageKey];
+if (!data) return;
+
+document.getElementById('modal-eyebrow').textContent = data.eyebrow;
+document.getElementById('modal-title').textContent = data.title;
+document.getElementById('modal-price').textContent = data.price;
+
+var stepsHtml = '';
+data.steps.forEach(function(step, i) {
+stepsHtml += '<li>' +
+'<span class="modal-step-num">0' + (i+1) + '</span>' +
+'<div class="modal-step-content">' +
+'<div class="modal-step-title">' + step.title + '</div>' +
+'<div class="modal-step-desc">' + step.desc + '</div>' +
+'</div></li>';
+});
+document.getElementById('modal-steps').innerHTML = stepsHtml;
+document.getElementById('modal-result').textContent = data.result;
+
+document.getElementById('modal-overlay').classList.add('open');
+document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+document.getElementById('modal-overlay').classList.remove('open');
+document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+document.addEventListener('keydown', function(e) {
+if (e.key === 'Escape') closeModal();
+});
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+switchLang('de', document.querySelector('.lang-btn.active'));
+});
+
+// Track current language for modals
+var _origSwitchLang = switchLang;
+switchLang = function(lang, btn) {
+currentLang = lang;
+_origSwitchLang(lang, btn);
+};
+</script>
+
+</body>
+</html>
